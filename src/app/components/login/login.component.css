@@ -1,0 +1,84 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap-reverse;
+}
+
+.auth_form_box {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  animation: init_animation_forms 0.5s ease-out;
+  width: 69%;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+h3 {
+  margin-bottom: 20px;
+  color: #148414;
+}
+
+.auth_form_box > div > i {
+  font-size: 30px;
+  color: #148414;
+}
+
+.icon-regist {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 17px;
+  border-radius: 100%;
+  border: 1px solid green;
+  width: max-content;
+  margin-bottom: 10px;
+}
+
+.auth_form_box > form {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  box-shadow: 1px 0px 5px #148414;
+  border-radius: 20px;
+  min-width: 30%;
+}
+
+.send-btn {
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border-color: white;
+  background: green;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 50%;
+  align-self: center;
+}
+
+nav {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+a {
+  padding: 10px;
+  transition: ease-in 0.2s;
+}
+a:hover {
+  background: green;
+  opacity: 0.8;
+  border-radius: 5px;
+  color: white;
+}

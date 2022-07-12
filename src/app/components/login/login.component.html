@@ -1,0 +1,38 @@
+<div class="container">
+
+
+  <div class="auth_form_box">
+
+    <form [formGroup]="form">
+
+      <header>
+        <div class="icon-regist">
+          <i class="fa fa-sign-in" aria-hidden="true"></i>
+        </div>
+        <h3>Login form</h3>
+      </header>
+      <p  *ngIf="message" [class]="class_result">{{message}} </p>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Correo</mat-label>
+        <input formControlName="email" type="email" matInput required>
+        <mat-error *ngIf="mat_error_field.email">{{mat_error_field.email}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" type="password" required>
+        <mat-error *ngIf="mat_error_field.password">{{mat_error_field.password}}</mat-error>
+      </mat-form-field>
+      <input class="send-btn"(click)="login()" type="submit" [disabled]="form.invalid" value="LOGIN">
+      <nav>
+        <a routerLink="/">Home</a>
+        <a routerLink="/logup">Log up</a>
+      </nav>
+    </form>
+
+  </div>
+
+
+
+
+</div>

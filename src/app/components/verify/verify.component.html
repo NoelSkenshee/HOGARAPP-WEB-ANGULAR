@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="auth_form_box">
+    <div class="container" *ngIf="verified">
+      <div class="navigation_auth">
+        <img src="../../../assets/hogarapp_logo.png" alt="">
+        <p class="card_absolute_success">{{message}}</p>
+        <nav class="nav">
+          <button  *ngIf="!error" mat-button [routerLink]="['/login']">LOGIN</button>
+          <button  *ngIf="error" mat-button [routerLink]="['/']">HOME</button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

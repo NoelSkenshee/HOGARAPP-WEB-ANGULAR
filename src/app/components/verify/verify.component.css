@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap-reverse;
+}
+
+.auth_form_box {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  animation: init_animation_forms 0.5s ease-out;
+}
+
+.navigation_auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  padding: 17px;
+}
+
+button {
+  background-color: greenyellow !important;
+  color: white;
+  min-width: 100px;
+  padding: 10px;
+  border-color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
