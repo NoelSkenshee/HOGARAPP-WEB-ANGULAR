@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #445544;
+  min-height: 100vh;
+}
+
+.main_product {
+  padding: 15px;
+  background: white;
+  box-shadow: 0px 1px 3px 0px green;
+  margin-bottom: 17px;
+  height: max-content;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 340px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+h2 {
+  align-self: flex-start;
+}
+img {
+  max-width: 100%;
+}
+
+.info_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+}
+
+.info {
+  margin: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.consume {
+  margin: 0;
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.consume > input {
+  width: 50%;
+  padding: 3px;
+}
+
+.btn {
+  padding: 5px;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 1px 3px 0px green;
+}

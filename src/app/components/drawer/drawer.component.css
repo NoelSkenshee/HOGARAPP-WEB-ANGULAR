@@ -1,0 +1,160 @@
+*{
+  overflow-x:hidden !important;
+  overflow-y:hidden !important;
+}
+.container{
+  width: 100%;
+  height: 100vh;
+}
+
+.container>*{
+  height: 100vh;
+}
+
+.side{
+  min-width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+
+}
+nav .config{
+  width: 100%!important;
+  display: flex!important;
+  flex-direction: column!important;
+  align-items: center!important;
+  justify-content: center!important;
+  align-content: center!important;
+}
+.config{
+  box-shadow: 0px 1px 2px green;
+
+}
+.toolbar{
+  background-color: white!important;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 1px 2px green;
+  color: green;
+}
+
+
+.config>ul{
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  justify-content: space-around;
+  list-style: none;
+  align-items: center;
+  align-content: center;
+}
+
+.config>ul>li{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+  color: green;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+}
+.config>ul>li>i{
+  font-size: 25px;
+
+}
+
+i.action{
+  background: none;
+  color: green;
+  font-size: 25px;
+  box-shadow: none;
+  border-color: green!important;
+  cursor: pointer;
+}
+
+
+
+
+.navigation{
+  display: flex;
+  padding: 10px;
+  margin: 0;
+  justify-content: space-around;
+  list-style: none;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  height: 32vh;
+}
+
+.navigation>li{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  padding: 10px;
+  color: #265747;
+  box-shadow: 0px 1px 2px green;
+
+}
+
+.navigation>li:hover{
+  color: white!important;
+   background-color: green;
+  box-shadow: none
+}
+
+
+.active{
+  color: white!important;
+  background-color: green;
+ box-shadow: none
+}
+
+.menu_content{
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.footer{
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 97.5%;
+  padding: 10px;
+  background:green;
+}
+
+.footer>li{
+  padding: 5px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.footer>li:hover{
+  color: white!important;
+   background-color: #265747;
+  box-shadow: none;
+  border-radius: 100%;
+}

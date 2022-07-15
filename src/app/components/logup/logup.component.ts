@@ -3,9 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import tools from '../../Utils/tools';
 import { httpResponse } from '../../Utils/types/responseHttp';
-const { map_mesage_error, map_errors, welcome } = tools.components.logup;
-const { card_absolute_error, card_absolute_success ,services} = tools.components;
-const {LOGUP}=services;
+const { map_mesage_error, map_errors, welcome } = tools.components.logup,{ card_absolute_error, card_absolute_success ,services} = tools.components,{LOGUP}=services;
 
 @Component({
   selector: 'app-logup',

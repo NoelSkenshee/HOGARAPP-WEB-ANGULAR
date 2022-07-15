@@ -3,6 +3,9 @@ import { HomeComponent } from '../components/home/home.component';
 import { LogupComponent } from '../components/logup/logup.component';
 import { LoginComponent } from '../components/login/login.component';
 import { VerifyComponent } from '../components/verify/verify.component';
+import { DashboardComponent } from '../components/dashboard/dashboard.component';
+import { UnexpiredComponent } from '../components/unexpired/unexpired.component';
+import { NewproductComponent } from '../components/newproduct/newproduct.component';
 
 export  const routes:Routes= [
 {
@@ -14,12 +17,28 @@ export  const routes:Routes= [
   component:LogupComponent
 },
 {
+  path:"verify/:authorization",
+  component:VerifyComponent
+},
+{
   path:"login",
   component:LoginComponent
 },
 {
-  path:"verify/:authorization",
-  component:VerifyComponent
+  path:"dashboard",
+  component:DashboardComponent,
+  children:[
+    {
+        path:"",
+        component:UnexpiredComponent
+
+    },
+    {
+      path:"newproduct",
+      component:NewproductComponent
+
+  }
+]
 }
 
 ]

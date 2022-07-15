@@ -4,6 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
+
+
+
+
 
 
 
@@ -17,6 +25,10 @@ import { LogupComponent } from './components/logup/logup.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth/auth.service';
 import { VerifyComponent } from './components/verify/verify.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UnexpiredComponent } from './components/unexpired/unexpired.component';
+import { DrawerComponent } from './components/drawer/drawer.component';
+import { NewproductComponent } from './components/newproduct/newproduct.component';
 
 
 @NgModule({
@@ -26,6 +38,10 @@ import { VerifyComponent } from './components/verify/verify.component';
     HomeComponent,
     LogupComponent,
     VerifyComponent,
+    DashboardComponent,
+    UnexpiredComponent,
+    DrawerComponent,
+    NewproductComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +52,11 @@ import { VerifyComponent } from './components/verify/verify.component';
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatGridListModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

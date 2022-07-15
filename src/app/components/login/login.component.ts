@@ -4,9 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import tools from '../../Utils/tools';
 import { httpResponse } from '../../Utils/types/responseHttp';
-const { message_error_field, mat_error_field } = tools.components.login;
-const { card_absolute_error, card_absolute_success ,services} = tools.components;
-const {LOGIN}=services;
+const { message_error_field, mat_error_field } = tools.components.login, { card_absolute_error, card_absolute_success ,services,Authorization,routes} = tools.components,{LOGIN}=services;
 
 @Component({
   selector: 'app-login',
@@ -43,7 +41,7 @@ export class LoginComponent implements OnInit {
       const field = this.form.get(key);
       if (field && field.dirty && field.invalid) {
         for (const error in field.errors) {
-          this.mat_error_field[key] = this.message_error_field[key][error];
+           this.mat_error_field[key] = this.message_error_field[key][error];
         }
       }
     }
@@ -54,13 +52,14 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       auth[LOGIN](this.form.value).subscribe(
         (res:httpResponse) => {
-          this.class_result = card_absolute_success;
-          // this.nav.navigate(["/dasboard"])
-          this.form.reset();
+           this.class_result = card_absolute_success;
+           this.form.reset();
+           localStorage.setItem(Authorization,res.data)
+           this.nav.navigate([routes.dashboard])
         },
         (err:any) => {
-          this.message = err.error.message.text || err.error.message;
-          this.class_result = card_absolute_error;
+           this.message = err.error.message.text || err.error.message;
+           this.class_result = card_absolute_error;
         }
       );
     }

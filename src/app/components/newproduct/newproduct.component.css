@@ -1,0 +1,49 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #445544;
+  min-height: 100vh;
+  color: white;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.row_col_2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.row_col_2>*{
+  background-color: white;
+  min-width: 40%;
+  color: black!important;
+  padding: 10px;
+  margin-top: 20px;
+
+}
+
+.send-btn {
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  border-color: white;
+  background: green;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 30%;
+  align-self: center;
+}
+
+
+.file_box{
+  margin-top: 20px;
+}

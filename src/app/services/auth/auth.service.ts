@@ -4,8 +4,8 @@ import { Regist } from 'src/app/Utils/types/regist';
 import { httpResponse } from 'src/app/Utils/types/responseHttp';
 import services from 'src/app/Utils/tools';
 import { Login } from '../../Utils/types/login';
-const { registMongo, registSQL,loginMongo,loginSQL,verifySQL,verifyMongo,methods} = services.services.auth;
-const {LOGIN_MONGO,LOGIN_SQL,LOGUP_MONGO,LOGUP_SQL,VERIFY_MONGO,VERIFY_SQL}=methods
+const { registMongo, registSQL,loginMongo,loginSQL,verifySQL,verifyMongo} = services.services.auth;
+const {LOGIN_MONGO,LOGIN_SQL,LOGUP_MONGO,LOGUP_SQL,VERIFY_MONGO,VERIFY_SQL}=services.services.methods
 
 @Injectable({
   providedIn: 'root',
