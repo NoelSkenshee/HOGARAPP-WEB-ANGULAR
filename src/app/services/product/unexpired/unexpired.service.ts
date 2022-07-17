@@ -21,5 +21,4 @@ export class UnexpiredService {
     return this.net.get<httpResponse>(productSQL(token)).pipe()
    }
 
-
 }

@@ -6,6 +6,8 @@ import { VerifyComponent } from '../components/verify/verify.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { UnexpiredComponent } from '../components/unexpired/unexpired.component';
 import { NewproductComponent } from '../components/newproduct/newproduct.component';
+import { ConsumptionComponent } from '../components/consumption/consumption.component';
+import { ExpiredComponent } from '../components/expired/expired.component';
 
 export  const routes:Routes= [
 {
@@ -37,7 +39,18 @@ export  const routes:Routes= [
       path:"newproduct",
       component:NewproductComponent
 
-  }
+    },
+    {
+      path:"consumption",
+      component:ConsumptionComponent
+
+    },
+
+    {
+      path:"expired",
+      component:ExpiredComponent
+
+    }
 ]
 }
 

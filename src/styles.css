@@ -134,7 +134,32 @@ footer {
       }
 }
 
-
+@keyframes left_right {
+  0%,50%{
+    opacity: 0.2;
+    transform: translateX(-1000px);
+  }
+  80%{
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes right_left {
+  0%,50%{
+    opacity: 0.2;
+    transform: translateX(1000px);
+  }
+  80%{
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100%{
+    opacity: 1;
+  }
+}
 
 @keyframes init_animation_forms {
   0%,50%{

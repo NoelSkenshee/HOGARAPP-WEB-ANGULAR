@@ -10,6 +10,9 @@ const endpoints = {
 
   productSQL: '/product/',
   productMONGO: '/mongo/product/',
+
+  consumptionSQL: '/consumption/',
+  consumptionMONGO: '/mongo/consumption/',
 };
 
 const API_URL = 'http://localhost:9090';
@@ -23,6 +26,9 @@ const METHODS_SERVICES = {
   VERIFY_MONGO: 'VERIFY_MONGO',
   LIST_UNXPIRED_SQL: 'LIST_UNXPIRED_SQL',
   NEW_PRODUCT_SQL:   'NEW_PRODUCT_SQL',
+  LIST_CONSUMPTION_SQL:   'LIST_CONSUMPTION_SQL',
+  INSERT_CONSUMPTION_SQL:   'INSERT_CONSUMPTION_SQL',
+  LIST_CONSUMPTION_MONGO:   'LIST_CONSUMPTION_MONGO',
 };
 
 const METHODS = {
@@ -30,7 +36,10 @@ const METHODS = {
   LOGUP: 'LOGUP_SQL',
   VERIFY: 'VERIFY_SQL',
   NEW_PRODUCT:'NEW_PRODUCT_SQL',
-  LIST_UNXPIRED:'LIST_UNXPIRED_SQL'
+  LIST_UNXPIRED:'LIST_UNXPIRED_SQL',
+  LIST_CONSUMPTION:"LIST_CONSUMPTION_SQL",
+  INSERT_CONSUMPTION:   'INSERT_CONSUMPTION_SQL',
+
 };
 
 
@@ -67,6 +76,10 @@ export default {
       productSQL: (token: string) =>
         `${API_URL}${endpoints.productSQL}${token}`,
 
+    },
+    consumption:{
+      consumption:(token:string)=>`${API_URL}${endpoints.consumptionSQL}${token}`,
+      ENOUGH:"No hay sufienciente producto"
     }
   },
 

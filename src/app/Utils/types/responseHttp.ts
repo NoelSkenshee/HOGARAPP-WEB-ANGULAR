@@ -1,5 +1,5 @@
 export type httpResponse={
-  message:string,
+  message:any,
   data:any,
   error:boolean
 }

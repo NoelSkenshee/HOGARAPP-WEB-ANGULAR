@@ -22,7 +22,8 @@
   align-items: center;
   justify-content: space-around;
   width: 340px;
-  animation: left_right 1s ease-OUT;
+  animation: right_left 1s ease-OUT;
+
 }
 
 header {
@@ -43,7 +44,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 100%;
+  width: 100%;
 }
 
 .info {
@@ -51,7 +52,7 @@ img {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .consume {

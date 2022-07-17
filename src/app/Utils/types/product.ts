@@ -1,4 +1,5 @@
 export type Product={
+  id:any
   product: string;
   category: string;
   createdAt: Date;
@@ -9,5 +10,6 @@ export type Product={
   price: number;
   image?:File,
   alt:string
-
+  consumption:number,
+  newconsumption:number
 }

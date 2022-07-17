@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="main_product" *ngFor="let consumption of consumptions">
+  <header><h2>{{consumption.product}}</h2>
+  <img   [src]="img_path+consumption.image" alt="alt"/>
+</header>
+  <div class="info_box">
+    <p class="info"><span>Fecha consumo</span><span>{{consumption.date|date}}</span> </p>
+    <p class="info"><span>Cantidad consumida</span><span>{{consumption.quantity}}</span> </p>
+  </div>
+</div>
+</div>
+
