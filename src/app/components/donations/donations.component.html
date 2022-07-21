@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="main_product" *ngFor="let donate of donations">
+  <header><h2>{{donate.name}}</h2>
+  <img   [src]="img_path+donate.image" alt="alt"/>
+</header>
+  <div class="info_box">
+    <p class="info"><span>Beneficiario</span><span>{{donate.destination}}</span> </p>
+    <p class="info"><span>Fecha de donacion</span><span>{{donate.date|date}}</span> </p>
+    <p class="info"><span>Cantidad donada</span><span>{{donate.quantity}}{{donate.unit}}</span> </p>
+  </div>
+</div>
+</div>

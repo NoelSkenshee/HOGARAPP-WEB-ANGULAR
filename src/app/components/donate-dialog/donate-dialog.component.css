@@ -1,19 +1,16 @@
 .container {
   display: flex;
   justify-content: space-around;
-  padding: 20px;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  background-color: #445544;
-  min-height: 100vh;
+  background-color: transparent;
 }
 
 .main_product {
   padding: 15px;
   background: white;
   box-shadow: 0px 1px 3px 0px green;
-  margin-bottom: 17px;
   height: max-content;
   border-radius: 10px;
   display: flex;
@@ -33,7 +30,12 @@ header {
   width: 100%;
 }
 h2 {
-  align-self: flex-start;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+i{
+  color: green;
 }
 img {
   max-width: 100%;
@@ -83,36 +85,22 @@ img {
   width: 100%;
 }
 
-ul{
-  padding: 5px;
-  margin: 0;
+.info_donate{
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-content: center;
-  list-style: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
-
-li{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  color: #265747;
-  box-shadow: 0px 1px 2px green;
-  padding: 5px;
+.send-btn {
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  border-color: white;
+  background: green;
+  margin-top: 20px;
   cursor: pointer;
-}
-
-li:hover{
-  color: white !important;
-  background-color: green;
-  box-shadow: none;
-
-}
-.dialog{
-  padding: 0px!important
-}
-.mat-dialog-container{
-  padding: 0px!important
-
+  width: 30%;
+  align-self: center;
 }

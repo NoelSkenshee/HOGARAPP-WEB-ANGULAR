@@ -8,6 +8,7 @@ import { UnexpiredComponent } from '../components/unexpired/unexpired.component'
 import { NewproductComponent } from '../components/newproduct/newproduct.component';
 import { ConsumptionComponent } from '../components/consumption/consumption.component';
 import { ExpiredComponent } from '../components/expired/expired.component';
+import { DonationsComponent } from '../components/donations/donations.component';
 
 export  const routes:Routes= [
 {
@@ -49,6 +50,11 @@ export  const routes:Routes= [
     {
       path:"expired",
       component:ExpiredComponent
+
+    },
+    {
+      path:"donations",
+      component:DonationsComponent
 
     }
 ]

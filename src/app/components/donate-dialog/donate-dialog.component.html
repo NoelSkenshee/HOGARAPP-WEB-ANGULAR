@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="main_product">
+    <header>
+      <div class="options_box">
+
+        <h2>Donar {{product.product}} <i class="fa fa-heartbeat" aria-hidden="true"></i></h2>
+      </div>
+      <img [src]="img_path+product.image" [alt]="product.alt" />
+    </header>
+    <div class="info_box">
+      <div class="info_donate">
+        <mat-form-field apearance="fill">
+          <input matInput placeholder="Destination" [(ngModel)]="destination">
+        </mat-form-field>
+        <mat-form-field apearance0="fill">
+          <input matInput placeholder="Quantity" [(ngModel)]="quantity">
+        </mat-form-field>
+      </div>
+      <button class="send-btn" (click)="donate(destination,quantity,product,auth)" mat-button>SEND</button>
+    </div>
+  </div>
+</div>

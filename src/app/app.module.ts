@@ -9,6 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 
 
@@ -32,6 +34,8 @@ import { DrawerComponent } from './components/drawer/drawer.component';
 import { NewproductComponent } from './components/newproduct/newproduct.component';
 import { ConsumptionComponent } from './components/consumption/consumption.component';
 import { ExpiredComponent } from './components/expired/expired.component';
+import { DonateDialogComponent } from './components/donate-dialog/donate-dialog.component';
+import { DonationsComponent } from './components/donations/donations.component';
 
 
 @NgModule({
@@ -47,6 +51,8 @@ import { ExpiredComponent } from './components/expired/expired.component';
     NewproductComponent,
     ConsumptionComponent,
     ExpiredComponent,
+    DonateDialogComponent,
+    DonationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,8 @@ import { ExpiredComponent } from './components/expired/expired.component';
     MatToolbarModule,
     MatDividerModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@
   background-color: #445544;
   min-height: 100vh;
   color: white;
+  min-width:min-content ;
 }
 
 form{

@@ -22,7 +22,8 @@
   align-items: center;
   justify-content: space-around;
   width: 340px;
-  animation: left_right 1s ease-OUT;
+  animation: right_left 1s ease-OUT;
+
 }
 
 header {
@@ -73,46 +74,4 @@ img {
   color: white;
   cursor: pointer;
   box-shadow: 0px 1px 3px 0px green;
-}
-
-.options_box{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-ul{
-  padding: 5px;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  list-style: none;
-}
-
-li{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  color: #265747;
-  box-shadow: 0px 1px 2px green;
-  padding: 5px;
-  cursor: pointer;
-}
-
-li:hover{
-  color: white !important;
-  background-color: green;
-  box-shadow: none;
-
-}
-.dialog{
-  padding: 0px!important
-}
-.mat-dialog-container{
-  padding: 0px!important
-
 }

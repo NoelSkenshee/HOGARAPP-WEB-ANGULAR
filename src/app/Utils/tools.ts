@@ -11,11 +11,21 @@ const endpoints = {
   productSQL: '/product/',
   productMONGO: '/mongo/product/',
 
+  productEXPSQL: '/product/expired/',
+  productEXPMONGO: '/mongo/product/expired/',
+
   consumptionSQL: '/consumption/',
   consumptionMONGO: '/mongo/consumption/',
+
+
+  donateSQL: '/expiry/donate/',
+  donateMONGO: '/mongo/expiry/donate/',
+
+  trashSQL: '/expiry/trash/',
+  trashMONGO: '/mongo/expiry/trash/',
 };
 
-const API_URL = 'http://localhost:9090';
+const API_URL = 'https://hogarapp.herokuapp.com';
 
 const METHODS_SERVICES = {
   LOGIN_SQL: 'LOGIN_SQL',
@@ -25,21 +35,44 @@ const METHODS_SERVICES = {
   LOGUP_MONGO: 'LOGUP_MONGO',
   VERIFY_MONGO: 'VERIFY_MONGO',
   LIST_UNXPIRED_SQL: 'LIST_UNXPIRED_SQL',
+  LIST_EXPIRED_SQL: 'LIST_EXPIRED_SQL',
+  LIST_EXPIRED_MONGO: 'LIST_EXPIRED_MONGO',
   NEW_PRODUCT_SQL:   'NEW_PRODUCT_SQL',
   LIST_CONSUMPTION_SQL:   'LIST_CONSUMPTION_SQL',
   INSERT_CONSUMPTION_SQL:   'INSERT_CONSUMPTION_SQL',
   LIST_CONSUMPTION_MONGO:   'LIST_CONSUMPTION_MONGO',
+  TO_TRASH_SQL:'TO_TRASH_SQL',
+  TO_TRASH_MONGO:'TO_TRASH_MONGO',
+  INSERT_DONATE_SQL:'INSERT_DONATE_SQL',
+  INSERT_DONATE_MONGO:'INSERT_DONATE_MONGO',
+  LIST_DONATE_SQL:'LIST_DONATE_SQL',
+  LIST_DONATE_MONGO:'LIST_DONATE_MONGO'
+
 };
 
-const METHODS = {
-  LOGIN: 'LOGIN_SQL',
-  LOGUP: 'LOGUP_SQL',
-  VERIFY: 'VERIFY_SQL',
-  NEW_PRODUCT:'NEW_PRODUCT_SQL',
-  LIST_UNXPIRED:'LIST_UNXPIRED_SQL',
-  LIST_CONSUMPTION:"LIST_CONSUMPTION_SQL",
-  INSERT_CONSUMPTION:   'INSERT_CONSUMPTION_SQL',
 
+
+
+
+
+
+
+
+
+
+
+const METHODS = {
+  LOGIN: METHODS_SERVICES.LOGIN_SQL,
+  LOGUP: METHODS_SERVICES.LOGUP_SQL,
+  VERIFY: METHODS_SERVICES.VERIFY_SQL,
+  NEW_PRODUCT:METHODS_SERVICES.NEW_PRODUCT_SQL,
+  LIST_UNXPIRED:METHODS_SERVICES.LIST_UNXPIRED_SQL,
+  LIST_CONSUMPTION:METHODS_SERVICES.LIST_CONSUMPTION_SQL,
+  INSERT_CONSUMPTION: METHODS_SERVICES.INSERT_CONSUMPTION_SQL,
+  INSERT_DONATE:METHODS_SERVICES.INSERT_DONATE_SQL,
+  LIST_DONATE:METHODS_SERVICES.LIST_DONATE_SQL,
+  TO_TRASH:METHODS_SERVICES.TO_TRASH_SQL,
+  LIST_EXPIRED:METHODS_SERVICES.LIST_EXPIRED_SQL,
 };
 
 
@@ -75,12 +108,20 @@ export default {
     product: {
       productSQL: (token: string) =>
         `${API_URL}${endpoints.productSQL}${token}`,
+        productEXPSQL: (token: string) =>
+        `${API_URL}${endpoints.productEXPSQL}${token}`,
 
     },
     consumption:{
       consumption:(token:string)=>`${API_URL}${endpoints.consumptionSQL}${token}`,
       ENOUGH:"No hay sufienciente producto"
+    },
+    expiry:{
+      donate:(token:string)=>`${API_URL}${endpoints.donateSQL}${token}`,
+      trash:(token:string)=>`${API_URL}${endpoints.trashSQL}${token}`,
+      ENOUGH:"No hay sufienciente producto"
     }
+
   },
 
   components: {
