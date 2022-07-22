@@ -4,7 +4,7 @@
     <img   [src]="img_path+product.image" [alt]="product.alt"/>
   </header>
     <div class="info_box">
-      <p class="info consume_box"><span class="consume"><input matInput type="number" [(ngModel)]="product.newconsumption" [value]="product.consumption" name="" id="" pointer> <span>{{product.unit}}</span> </span><button class="btn send" (click)="consumption(product)">Consume</button> </p>
+      <p class="info consume_box"><span class="consume"><input matInput placeholder="cantidad" type="number" [(ngModel)]="product.newconsumption" [value]="product.consumption" name="" id="" pointer> <span>{{product.unit}}</span> </span><button class="btn send" (click)="consumption(product)">Consume</button> </p>
       <p class="info"><span>Total almacenado</span><span>{{product.quantity-(product.consumption+product.donate)}} {{product.unit}}</span> </p>
       <p class="info"><span>Precio</span><span>{{product.price|currency}}</span> </p>
       <p class="info"><span>Fecha de expiracion</span><span>{{product.expiryDate|date}}</span> </p>

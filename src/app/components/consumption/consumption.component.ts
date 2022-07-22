@@ -14,16 +14,34 @@ export class ConsumptionComponent implements OnInit {
   img_path=IMAGE+img_products
    auth!:string;
    consumptions!:Consumption[]
+   averages!:any;
+   active1="active"
+   active2=""
    constructor(private net:ConsumptionService,private nav:Router) {
     this.auth=<any>localStorage.getItem(Authorization);
-    if(!this.auth)this.nav.navigate([routes.home])
+
   }
 
   ngOnInit(): void {
-    const net:any=this.net;
-    net[LIST_CONSUMPTION](this.auth).subscribe((res:ConsumptionRes)=>{
-      this.consumptions=res.data
+    if(!this.auth)this.nav.navigate([routes.home])
+    const net_:any=this.net;
+    net_[LIST_CONSUMPTION](this.auth).toPromise().then((res:any)=>{
+      this.consumptions=res.data;
+      this.averages=res.averages
      },(err:any)=>console.error(err) )
+  }
+
+
+
+  toggle(btn:any){
+    if (btn==1){
+      this.active2=""
+      this.active1="active"
+    }else {
+      this.active1=""
+      this.active2="active"
+    }
+
   }
 
 

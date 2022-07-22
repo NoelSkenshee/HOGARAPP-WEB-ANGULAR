@@ -15,4 +15,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
+toggle(drawer:any){
+   drawer.toggle()
+}
+
 }

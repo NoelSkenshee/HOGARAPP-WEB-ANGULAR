@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 
 
@@ -36,6 +37,7 @@ import { ConsumptionComponent } from './components/consumption/consumption.compo
 import { ExpiredComponent } from './components/expired/expired.component';
 import { DonateDialogComponent } from './components/donate-dialog/donate-dialog.component';
 import { DonationsComponent } from './components/donations/donations.component';
+import { AverageConsumptionComponent } from './components/average-consumption/average-consumption.component';
 
 
 @NgModule({
@@ -53,6 +55,7 @@ import { DonationsComponent } from './components/donations/donations.component';
     ExpiredComponent,
     DonateDialogComponent,
     DonationsComponent,
+    AverageConsumptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { DonationsComponent } from './components/donations/donations.component';
     MatDividerModule,
     MatGridListModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatButtonToggleModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

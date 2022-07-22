@@ -1,4 +1,9 @@
-<div class="container">
+<div class="main">
+<mat-button-toggle-group class="group'_btn">
+  <mat-button-toggle [class]="'tog_btn '+active1" (click)="toggle(1)">Consumo </mat-button-toggle>
+  <mat-button-toggle [class]="'tog_btn '+active2" (click)="toggle(2)">Promedio</mat-button-toggle>
+  </mat-button-toggle-group>
+<div class="container" *ngIf="active1">
   <div class="main_product" *ngFor="let consumption of consumptions">
   <header><h2>{{consumption.product}}</h2>
   <img   [src]="img_path+consumption.image" alt="alt"/>
@@ -8,5 +13,7 @@
     <p class="info"><span>Cantidad consumida</span><span>{{consumption.quantity}}</span> </p>
   </div>
 </div>
+</div>
+<app-average-consumption  *ngIf="!active1" [averages]="averages"></app-average-consumption>
 </div>
 

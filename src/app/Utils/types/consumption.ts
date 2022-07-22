@@ -3,6 +3,9 @@ export type Consumption = {
   image: string;
   date: string;
   quantity: number;
+  foraverage:number,
+  repeat:number
+  unit:string
 };
 
 export type ConsumptionRes ={

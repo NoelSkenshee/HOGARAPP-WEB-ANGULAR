@@ -2,22 +2,21 @@
   <mat-drawer-container class="example-container" autosize>
 
   <mat-toolbar class="toolbar">
-      <i class="fa fa-bars action"  (click)="drawer.toggle()"></i>
+      <i class="fa fa-bars action"  (click)="toggle(drawer)"></i>
     <mat-divider></mat-divider>
 
       <i class="fa fa-plus action" routerLink="/dashboard/newproduct" ></i>
   </mat-toolbar>
      <mat-drawer #drawer class="side" mode="side">
-      <app-drawer></app-drawer>
+
+      <app-drawer (toggle)="toggle(drawer)"></app-drawer>
+
+
       </mat-drawer>
 
       <div class="main_dashboard">
-
          <router-outlet></router-outlet>
       </div>
-
-
-
   </mat-drawer-container>
 
 </div>

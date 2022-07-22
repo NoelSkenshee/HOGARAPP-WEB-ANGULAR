@@ -108,7 +108,7 @@ i.action{
 
 }
 
-.navigation>li:hover{
+ul>li:hover{
   color: white!important;
    background-color: green;
   box-shadow: none
@@ -157,4 +157,11 @@ i.action{
    background-color: #265747;
   box-shadow: none;
   border-radius: 100%;
+}
+.close{
+  position: absolute;
+  top: 9px;
+  right: 19px;
+  font-size: 27px;
+  color: green;
 }

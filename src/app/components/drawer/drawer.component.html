@@ -1,6 +1,7 @@
 <nav>
   <div class="config">
   <img src="../../../assets/hogarapp_logo.png" alt="">
+  <i class="fas fa-close close" (click)="toggle()"></i>
    <ul >
     <li><i class="fa fa-filter"></i></li>
     <li><i class="fas fa-user"></i></li>
@@ -9,11 +10,11 @@
   </div>
   <div class="menu_content">
   <ul class="navigation">
-    <li routerLink="/dashboard" routerLinkActive="active" ><span>Productos</span><svg style="width:24px;height:24px" viewBox="0 0 24 24"> <path fill="currentColor" d="M18.06 23H19.72C20.56 23 21.25 22.35 21.35 21.53L23 5.05H18V1H16.03V5.05H11.06L11.36 7.39C13.07 7.86 14.67 8.71 15.63 9.65C17.07 11.07 18.06 12.54 18.06 14.94V23M1 22V21H16.03V22C16.03 22.54 15.58 23 15 23H2C1.45 23 1 22.54 1 22M16.03 15C16.03 7 1 7 1 15H16.03M1 17H16V19H1V17Z" /></svg></li>
-    <li routerLink="/dashboard/expired" routerLinkActive="active"><span> Caducados</span> <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M11.35 8.5L11 5H16V1H18V5H23L21.62 18.79L11.35 8.5M1 21V22C1 22.55 1.45 23 2 23H15C15.55 23 16 22.55 16 22V21H1M21.9 21.9L2.1 2.1L.69 3.5L6.39 9.21C3.28 9.87 1 12 1 15H12.17L14.17 17H1V19H16V18.83L20.5 23.32L21.9 21.9Z" /> </svg></li>
+    <li routerLink="/dashboard" routerLinkActive="active" (click)="toggle()" ><span>Productos</span><svg style="width:24px;height:24px" viewBox="0 0 24 24"> <path fill="currentColor" d="M18.06 23H19.72C20.56 23 21.25 22.35 21.35 21.53L23 5.05H18V1H16.03V5.05H11.06L11.36 7.39C13.07 7.86 14.67 8.71 15.63 9.65C17.07 11.07 18.06 12.54 18.06 14.94V23M1 22V21H16.03V22C16.03 22.54 15.58 23 15 23H2C1.45 23 1 22.54 1 22M16.03 15C16.03 7 1 7 1 15H16.03M1 17H16V19H1V17Z" /></svg></li>
+    <li routerLink="/dashboard/expired" routerLinkActive="active" (click)="toggle()"><span> Caducados</span> <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M11.35 8.5L11 5H16V1H18V5H23L21.62 18.79L11.35 8.5M1 21V22C1 22.55 1.45 23 2 23H15C15.55 23 16 22.55 16 22V21H1M21.9 21.9L2.1 2.1L.69 3.5L6.39 9.21C3.28 9.87 1 12 1 15H12.17L14.17 17H1V19H16V18.83L20.5 23.32L21.9 21.9Z" /> </svg></li>
     <li> <span>Control dietetica</span><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M12,4C5,4 2,9 2,9L9,16C9,16 9.5,15.1 10.4,14.5L10.7,16.5C10.3,16.8 10,17.4 10,18A2,2 0 0,0 12,20A2,2 0 0,0 14,18C14,17.1 13.5,16.4 12.7,16.1L12.3,14C14.1,14.2 15,16 15,16L22,9C22,9 19,4 12,4M15.1,13.1C14.3,12.5 13.3,12 12,12L11,6.1C11.3,6 11.7,6 12,6C15.7,6 18.1,7.7 19.3,8.9L15.1,13.1M8.9,13.1L4.7,8.9C5.5,8 7,7 9,6.4L10,12.4C9.6,12.6 9.2,12.8 8.9,13.1Z" /></svg></li>
-    <li  routerLink="/dashboard/consumption" routerLinkActive="active" > <span>Salud</span> <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M19,8C19.56,8 20,8.43 20,9A1,1 0 0,1 19,10C18.43,10 18,9.55 18,9C18,8.43 18.43,8 19,8M2,2V11C2,13.96 4.19,16.5 7.14,16.91C7.76,19.92 10.42,22 13.5,22A6.5,6.5 0 0,0 20,15.5V11.81C21.16,11.39 22,10.29 22,9A3,3 0 0,0 19,6A3,3 0 0,0 16,9C16,10.29 16.84,11.4 18,11.81V15.41C18,17.91 16,19.91 13.5,19.91C11.5,19.91 9.82,18.7 9.22,16.9C12,16.3 14,13.8 14,11V2H10V5H12V11A4,4 0 0,1 8,15A4,4 0 0,1 4,11V5H6V2H2Z" /></svg></li>
-    <li routerLink="/dashboard/donations" routerLinkActive="active"><span>Donaciones</span><i class="fa fa-heartbeat" aria-hidden="true"></i></li>
+    <li  routerLink="/dashboard/consumption" routerLinkActive="active" (click)="toggle()"> <span>Consumo diario</span> <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M19,8C19.56,8 20,8.43 20,9A1,1 0 0,1 19,10C18.43,10 18,9.55 18,9C18,8.43 18.43,8 19,8M2,2V11C2,13.96 4.19,16.5 7.14,16.91C7.76,19.92 10.42,22 13.5,22A6.5,6.5 0 0,0 20,15.5V11.81C21.16,11.39 22,10.29 22,9A3,3 0 0,0 19,6A3,3 0 0,0 16,9C16,10.29 16.84,11.4 18,11.81V15.41C18,17.91 16,19.91 13.5,19.91C11.5,19.91 9.82,18.7 9.22,16.9C12,16.3 14,13.8 14,11V2H10V5H12V11A4,4 0 0,1 8,15A4,4 0 0,1 4,11V5H6V2H2Z" /></svg></li>
+    <li routerLink="/dashboard/donations" routerLinkActive="active" (click)="toggle()"><span>Donaciones</span><i class="fa fa-heartbeat" aria-hidden="true"></i></li>
   </ul>
 
   <ul class="footer">
@@ -22,4 +23,5 @@
     <li><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M20,18H18V9.25L12,13L6,9.25V18H4V6H5.2L12,10.25L18.8,6H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg></li>
   </ul>
   </div>
-   </nav>
+</nav>
+
