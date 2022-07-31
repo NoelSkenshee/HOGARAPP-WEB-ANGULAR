@@ -1,9 +1,65 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+
 body {
   font-family: HELVETICA;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+}
+app-consumption,app-unexpired{
+  display: flex;
+  flex-direction: column;
+  background-color: #445544;
+}
+app-consumption>.container,app-unexpired>.container,app-average-consumption>.container{
+    margin-top: 50px!important;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #445544;
+    min-height: 100vh;
+
+}
+
+mat-button-toggle-group{
+  position: fixed!important;
+  width: 75%!important;
+  z-index: 1000!important;
+  background: #445544!important;
+  border-radius: 20px!important;
+  align-self: center!important;
+ }
+
+ .tog_btn{
+  width: 100%;
+  background: transparent;
+  color: white;
+  font-size: 20px;
+  transition: 0.2s ease-in-out;
+}
+
+.active{
+  background: white;
+  color:#445544 ;
+}
+
+ @media screen and (max-width: 900px) {
+  mat-button-toggle-group{
+    display: flex!important;
+    justify-content: space-between!important;
+    flex-wrap: wrap!important;
+  }
+  form{
+    margin-top: 70px!important;
+  }
+  app-consumption>.container,app-unexpired>.container,app-average-consumption>.container{
+    margin-top: 80px!important;
+  }
+
 }
 .card_abosolute_error{
   text-align: center;

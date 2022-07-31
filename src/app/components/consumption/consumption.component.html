@@ -1,5 +1,5 @@
-<div class="main">
-<mat-button-toggle-group class="group'_btn">
+
+<mat-button-toggle-group class="group_btn">
   <mat-button-toggle [class]="'tog_btn '+active1" (click)="toggle(1)">Consumo </mat-button-toggle>
   <mat-button-toggle [class]="'tog_btn '+active2" (click)="toggle(2)">Promedio</mat-button-toggle>
   </mat-button-toggle-group>
@@ -10,10 +10,10 @@
 </header>
   <div class="info_box">
     <p class="info"><span>Fecha consumo</span><span>{{consumption.date|date}}</span> </p>
-    <p class="info"><span>Cantidad consumida</span><span>{{consumption.quantity}}</span> </p>
+    <p class="info"><span>Cantidad consumida</span><span>{{consumption.quantity}} {{consumption.unit}}</span> </p>
   </div>
 </div>
 </div>
 <app-average-consumption  *ngIf="!active1" [averages]="averages"></app-average-consumption>
-</div>
+
 

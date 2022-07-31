@@ -4,13 +4,17 @@ import { UnexpiredService } from '../../services/product/unexpired/unexpired.ser
 import { Router } from '@angular/router';
 import tools from 'src/app/Utils/tools';
 import { httpResponse } from '../../Utils/types/responseHttp';
-const {message_error,errors,form,fieldsForm}=tools.components.newproduct, {Authorization,routes}=tools.components, {NEW_PRODUCT}=tools.components.services;
+import { QueriesService } from '../../services/queries/queries.service';
+const {message_error,errors,form,fieldsForm}=tools.components.newproduct, {Authorization,routes}=tools.components, {NEW_PRODUCT,REMAINING,DURATION,CONSUMPTIOND,WAST,RECOMENDATION}=tools.components.services;
 
 @Component({
   selector: 'app-newproduct',
   templateUrl: './newproduct.component.html',
   styleUrls: ['./newproduct.component.css']
 })
+
+
+
 export class NewproductComponent implements OnInit {
   form!:FormGroup
   file!:File
@@ -18,8 +22,11 @@ export class NewproductComponent implements OnInit {
   post_product!:string;
   message_error:any=message_error
   errors:any=errors
+  interactive_fields=fieldsForm
+  liveInteraction=fieldsForm.liveInteraction
 
-  constructor(private fbuilder:FormBuilder,private net:UnexpiredService,private nave:Router) {
+
+  constructor(private fbuilder:FormBuilder,private net:UnexpiredService,private nave:Router,private q:QueriesService) {
       this.auth=<any>localStorage.getItem(Authorization);
       if(!this.auth)this.nave.navigate([routes.home])
       this.post_product=tools.services.product.productSQL(this.auth)
@@ -37,7 +44,7 @@ export class NewproductComponent implements OnInit {
       image: []
      });
 
-    this.form.valueChanges.subscribe(()=>this.validate())
+    this.form.valueChanges.subscribe(()=>{this.validate()})
 
   }
 
@@ -55,6 +62,56 @@ export class NewproductComponent implements OnInit {
      }
   }
 
+
+  remaining(){
+    const product =this.form.get(this.interactive_fields.product)?.value,
+     net:any= this.q;
+    net[REMAINING](this.auth,product).subscribe((res:httpResponse)=>{
+      if(res.data)this.liveInteraction.remaining=res.data
+      this.wast_cosumptionD_recomend()
+    })
+
+  }
+
+    durationsD(){
+      const expiryDate =this.form.get(this.interactive_fields.expiryDate)?.value,
+      net:any= this.q;
+      net[DURATION](this.auth,expiryDate).subscribe((res:httpResponse)=>{
+        if(res.data)this.liveInteraction.durationsD=res.data
+        this.wast_cosumptionD_recomend()
+
+      })
+    }
+
+    wast_cosumptionD_recomend(){
+      const product =this.form.get(this.interactive_fields.product)?.value;
+      const quantity =this.form.get(this.interactive_fields.quantity)?.value;
+      const expiryDate =this.form.get(this.interactive_fields.expiryDate)?.value,
+      net:any= this.q;
+
+      if(!product||quantity<=0||!expiryDate){
+        this.liveInteraction.recomendation=0
+        this.liveInteraction.consumptionsD=0
+        this.liveInteraction.wast=0
+        return
+      }
+      net[CONSUMPTIOND](this.auth,product,quantity,expiryDate).subscribe((res:httpResponse)=>{
+        if(res.data)this.liveInteraction.consumptionsD=res.data
+      })
+
+      if(quantity==this.liveInteraction.recomendation){
+        this.liveInteraction.recomendation=0
+        this.liveInteraction.wast=0
+        return
+      }
+
+      net[WAST](this.auth,product,quantity,expiryDate).subscribe((res:httpResponse)=>{
+        if(res.data)this.liveInteraction.wast=res.data
+      })
+      net[RECOMENDATION](this.auth,product,quantity,expiryDate).subscribe((res:httpResponse)=>{
+        if(res.data)this.liveInteraction.recomendation=res.data
+      })
+    }
 
    filemanager(file:any){
     const file_=<File>file.target.files[0];

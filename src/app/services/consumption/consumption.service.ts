@@ -24,9 +24,10 @@ export class ConsumptionService {
         })).pipe()
   }
 
-  [INSERT_CONSUMPTION_SQL]({consumption,quantity,newconsumption,id}:Product,token:string){
+  [INSERT_CONSUMPTION_SQL]({consumption,quantity,newconsumption,id,product}:Product,token:string){
     if(quantity-consumption<newconsumption)return of({error:true,message:ENOUGH,data:null}).pipe()
-    return this.net.post(route(token),{product:id,quantity:newconsumption}).pipe()
+    console.log({productId:id,product:product,quantity:newconsumption});
+    return this.net.post(route(token),{productId:id,product:product,quantity:newconsumption}).pipe()
   }
 
 

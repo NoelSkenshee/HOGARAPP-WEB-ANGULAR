@@ -62,7 +62,7 @@ h3 {
   background: green;
   margin-top: 20px;
   cursor: pointer;
-  width: 50%;
+  min-width: 50%;
   align-self: center;
 }
 

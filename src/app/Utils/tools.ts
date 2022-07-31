@@ -23,9 +23,17 @@ const endpoints = {
 
   trashSQL: '/expiry/trash/',
   trashMONGO: '/mongo/expiry/trash/',
+/**********************  ONLY SQL **************************** */
+    remaining: '/queries/remaining/',
+    duration: '/queries/durationsdays/',
+    wast: '/queries/wast/',
+    consumptiondays: '/queries/consumptiondays/',
+    recomendation: '/queries/recomendation/',
+/********************** END  ONLY SQL **************************** */
+
 };
 
-const API_URL = 'https://hogarapp.herokuapp.com';
+const API_URL = 'http://localhost:9090';
 
 const METHODS_SERVICES = {
   LOGIN_SQL: 'LOGIN_SQL',
@@ -46,10 +54,16 @@ const METHODS_SERVICES = {
   INSERT_DONATE_SQL:'INSERT_DONATE_SQL',
   INSERT_DONATE_MONGO:'INSERT_DONATE_MONGO',
   LIST_DONATE_SQL:'LIST_DONATE_SQL',
-  LIST_DONATE_MONGO:'LIST_DONATE_MONGO'
+  LIST_DONATE_MONGO:'LIST_DONATE_MONGO',
 
+  /**********************  ONLY SQL **************************** */
+  REMAINING:"REMAINING",
+  DURATION:"DURATION",
+  WAST:"WAST",
+  CONSUMPTIOND:"CONSUMPTIOND",
+  RECOMENDATION:"RECOMENDATION",
+  /**********************END  ONLY SQL **************************** */
 };
-
 
 
 
@@ -73,6 +87,11 @@ const METHODS = {
   LIST_DONATE:METHODS_SERVICES.LIST_DONATE_SQL,
   TO_TRASH:METHODS_SERVICES.TO_TRASH_SQL,
   LIST_EXPIRED:METHODS_SERVICES.LIST_EXPIRED_SQL,
+  REMAINING:METHODS_SERVICES.REMAINING,
+  DURATION:METHODS_SERVICES.DURATION,
+  WAST:METHODS_SERVICES.WAST,
+  CONSUMPTIOND:METHODS_SERVICES.CONSUMPTIOND,
+  RECOMENDATION:METHODS_SERVICES.RECOMENDATION,
 };
 
 
@@ -112,6 +131,9 @@ export default {
         `${API_URL}${endpoints.productEXPSQL}${token}`,
 
     },
+    queries: {
+      query:(end:'durationsdays'|'wast'|'consumptiondays'|'recomendation'|'remaining',token:string,queries:string)=> `${API_URL}/queries/${end}/${token}?${queries}`
+    },
     consumption:{
       consumption:(token:string)=>`${API_URL}${endpoints.consumptionSQL}${token}`,
       ENOUGH:"No hay sufienciente producto"
@@ -134,6 +156,7 @@ export default {
       home: '/',
       dashboard: '/dashboard',
     },
+
 
     login: {
       message_error_field: {
@@ -229,7 +252,13 @@ export default {
           'image',
           'alt',
         ],
-
+        liveInteraction:{
+          remaining:0,
+          durationsD:0,
+          wast:0,
+          consumptionsD:0,
+          recomendation:0
+      },
         product: 'product',
         category: 'category',
         expiryDate: 'expiryDate',

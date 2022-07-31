@@ -14,8 +14,8 @@
   <img   [src]="img_path+product.image" [alt]="product.alt"/>
 </header>
   <div class="info_box">
-    <p class="info"><span>Total almacenado</span><span>{{product.quantity-(product.consumption+product.donate)}} {{product.unit}}</span> </p>
-    <p class="info"><span>Precio</span><span>{{product.price|currency}}</span> </p>
+    <p class="info"><span>Total desperdicio</span><span>{{product.quantity-(product.consumption+product.donate)}} {{product.unit}}</span> </p>
+    <p class="info"><span>Costo</span><span>{{product.price*(product.quantity-(product.consumption+product.donate))|currency}}</span> </p>
     <p class="info"><span>Fecha de expiracion</span><span>{{product.expiryDate|date}}</span> </p>
   </div>
 </div>

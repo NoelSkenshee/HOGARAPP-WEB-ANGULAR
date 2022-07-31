@@ -1,12 +1,9 @@
 <div class="container">
-<header>
-<h2>New Product</h2>
-</header>
 <form  [formGroup]="form">
      <div class="row_col_2">
-     <mat-form-field>
+      <mat-form-field>
       <mat-label>Nmbre del Producto</mat-label>
-      <input matInput  formControlName="product" required >
+      <input matInput  formControlName="product" required  (input)="remaining()">
       <mat-error *ngIf="message_error.product">{{message_error.product}}</mat-error>
      </mat-form-field>
      <mat-form-field>
@@ -14,11 +11,12 @@
       <input matInput  formControlName="category" required >
       <mat-error *ngIf="message_error.category">{{message_error.category}}</mat-error>
      </mat-form-field>
-     </div>
+    </div>
+
      <div class="row_col_2">
       <mat-form-field>
        <mat-label>Caducacion</mat-label>
-       <input matInput type="date"  formControlName="expiryDate" required >
+       <input matInput type="date"  formControlName="expiryDate" required  (input)="durationsD()">
        <mat-error *ngIf="message_error.expiryDate">{{message_error.expiryDate}}</mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -26,26 +24,37 @@
        <input matInput  type="number" formControlName="total" required >
        <mat-error *ngIf="message_error.total">{{message_error.total}}</mat-error>
       </mat-form-field>
-      </div>
+    </div>
+
      <div class="row_col_2">
+
       <mat-form-field>
        <mat-label>Cantidad</mat-label>
-       <input matInput type="number"  formControlName="quantity" required >
+       <input matInput type="number"  formControlName="quantity" required (input)="wast_cosumptionD_recomend()" >
        <mat-error *ngIf="message_error.quantity">{{message_error.quantity}}</mat-error>
       </mat-form-field>
+
       <mat-form-field>
        <mat-label>Unidad</mat-label>
        <input matInput  type="text" formControlName="unit" required >
        <mat-error *ngIf="message_error.unit">{{message_error.unit}}</mat-error>
       </mat-form-field>
-      </div>
+    </div>
      <div class="row_col_2">
       <div class="file_box">
        <mat-label>Imagen</mat-label>
-       <input  (change)="filemanager($event)" type="file" name="image"   required >
+       <input  (input)="filemanager($event)" type="file" name="image"   required >
       </div>
       </div>
-      <input class="send-btn"  (click)="saveProduct()" type="submit" [disabled]="form.invalid" value="LOGIN">
+      <div class="box-info">
+        <p *ngIf="liveInteraction.remaining">Tienes {{liveInteraction.remaining}} unidades almacenado</p>
+        <p *ngIf="liveInteraction.durationsD">El producto durara solo {{liveInteraction.durationsD}} dias</p>
+        <p *ngIf="liveInteraction.consumptionsD">Podras consumir esta cantidad en {{liveInteraction.consumptionsD}} dias</p>
+        <p *ngIf="liveInteraction.wast>0">Se despediciaran  {{liveInteraction.wast}} unidades </p>
+        <p *ngIf="liveInteraction.recomendation">Tomando en cuenta lo que tienes almacenado y tu consumo diario te recomeiendo comprar  {{liveInteraction.recomendation}} unidades sin riesgo de que caduquen</p>
+        <p  *ngIf="liveInteraction.wast<0">Te haran falta  {{liveInteraction.wast}} unidades</p>
+      </div>
+      <input class="send-btn"  (click)="saveProduct()" type="submit" [disabled]="form.invalid" value="SAVE PRODUCT">
 
 </form>
 

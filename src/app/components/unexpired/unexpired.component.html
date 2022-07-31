@@ -1,4 +1,8 @@
-<div class="container">
+<mat-button-toggle-group class="group_btn">
+  <mat-button-toggle [class]="'tog_btn '+active1" (click)="toggle(1)">Agregar producto</mat-button-toggle>
+  <mat-button-toggle [class]="'tog_btn '+active2" (click)="toggle(2)">Productos no expirados</mat-button-toggle>
+  </mat-button-toggle-group>
+<div class="container" *ngIf="!active1">
     <div class="main_product" *ngFor="let product of products">
     <header><h2>{{product.product}}</h2>
     <img   [src]="img_path+product.image" [alt]="product.alt"/>
@@ -11,3 +15,4 @@
     </div>
   </div>
 </div>
+<app-newproduct *ngIf="active1"></app-newproduct>

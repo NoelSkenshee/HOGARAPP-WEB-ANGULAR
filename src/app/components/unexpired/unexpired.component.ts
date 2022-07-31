@@ -16,6 +16,9 @@ export class UnexpiredComponent implements OnInit {
   img_path=IMAGE+img_products
    auth!:string;
    products!:Product[]
+   active1="active"
+   active2=""
+
    constructor(private net:UnexpiredService,private nav:Router,private consum: ConsumptionService) {
     this.auth=<any>localStorage.getItem(Authorization);
     if(!this.auth)this.nav.navigate([routes.home])
@@ -37,11 +40,24 @@ this.list()
 
   consumption(product:Product){
    const consum:any= this.consum;
-    consum[INSERT_CONSUMPTION](product,this.auth).subscribe((res:any)=>{
+    consum[INSERT_CONSUMPTION]({...product,productId:product.id ,quantity:product.quantity},this.auth).subscribe((res:any)=>{
       console.log(res);
       this.list()
     })
 
   }
+
+
+  toggle(btn:any){
+    if (btn==1){
+      this.active2=""
+      this.active1="active"
+    }else {
+      this.active1=""
+      this.active2="active"
+    }
+
+  }
+
 
 }

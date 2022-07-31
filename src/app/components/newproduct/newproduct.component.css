@@ -8,7 +8,11 @@
   min-width:min-content ;
 }
 
+header{
+  padding: 30px;
+}
 form{
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -29,7 +33,16 @@ form{
   color: black!important;
   padding: 10px;
   margin-top: 20px;
+}
 
+.box-info{
+  font-size: 21px;
+  background: transparent;
+  color: #fff;
+  margin: 10px;
+  padding: 17px;
+  box-shadow: -1px 0px 8px green;
+  align-self: center;
 }
 
 .send-btn {

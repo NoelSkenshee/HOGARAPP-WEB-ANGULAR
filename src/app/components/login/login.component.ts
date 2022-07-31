@@ -58,6 +58,8 @@ export class LoginComponent implements OnInit {
            this.nav.navigate([routes.dashboard])
         },
         (err:any) => {
+          console.log(err);
+
            this.message = err.error.message.text || err.error.message;
            this.class_result = card_absolute_error;
         }
