@@ -1,5 +1,7 @@
 <div class="container">
+
 <form  [formGroup]="form">
+
      <div class="row_col_2">
       <mat-form-field>
       <mat-label>Nmbre del Producto</mat-label>
@@ -20,7 +22,7 @@
        <mat-error *ngIf="message_error.expiryDate">{{message_error.expiryDate}}</mat-error>
       </mat-form-field>
       <mat-form-field>
-       <mat-label>Total</mat-label>
+       <mat-label>Costo</mat-label>
        <input matInput  type="number" formControlName="total" required >
        <mat-error *ngIf="message_error.total">{{message_error.total}}</mat-error>
       </mat-form-field>
@@ -46,16 +48,25 @@
        <input  (input)="filemanager($event)" type="file" name="image"   required >
       </div>
       </div>
-      <div class="box-info">
-        <p *ngIf="liveInteraction.remaining">Tienes {{liveInteraction.remaining}} unidades almacenado</p>
-        <p *ngIf="liveInteraction.durationsD">El producto durara solo {{liveInteraction.durationsD}} dias</p>
-        <p *ngIf="liveInteraction.consumptionsD">Podras consumir esta cantidad en {{liveInteraction.consumptionsD}} dias</p>
-        <p *ngIf="liveInteraction.wast>0">Se despediciaran  {{liveInteraction.wast}} unidades </p>
-        <p *ngIf="liveInteraction.recomendation">Tomando en cuenta lo que tienes almacenado y tu consumo diario te recomeiendo comprar  {{liveInteraction.recomendation}} unidades sin riesgo de que caduquen</p>
-        <p  *ngIf="liveInteraction.wast<0">Te haran falta  {{liveInteraction.wast}} unidades</p>
-      </div>
-      <input class="send-btn"  (click)="saveProduct()" type="submit" [disabled]="form.invalid" value="SAVE PRODUCT">
-
+  <div class="box-info" >
+    <div class="image"> <img  [src]="img_path+form.get('product')?.value+'.jpeg'" [alt]="'upload new image'"></div>
+    <div class="info">
+    <p *ngIf="liveInteraction.remaining">Tienes {{liveInteraction.remaining}} {{unit}} almacenado</p>
+    <hr *ngIf="liveInteraction.remaining">
+    <p *ngIf="liveInteraction.average">Sueles consumir {{liveInteraction.average}} {{unit}} diario</p>
+    <hr *ngIf="liveInteraction.average">
+    <p *ngIf="liveInteraction.durationsD">El producto durara solo {{liveInteraction.durationsD}} dias</p>
+    <hr *ngIf="liveInteraction.durationsD">
+    <p *ngIf="liveInteraction.consumptionsD">Podras consumir esta cantidad en {{liveInteraction.consumptionsD}} dias</p>
+    <hr *ngIf="liveInteraction.consumptionsD">
+    <p *ngIf="liveInteraction.wast>0">Se despediciaran  {{liveInteraction.wast}} {{unit}} </p>
+    <hr *ngIf="liveInteraction.wast>0">
+    <p *ngIf="liveInteraction.recomendation">Tomando en cuenta lo que tienes almacenado y tu consumo diario te recomeiendo comprar  {{liveInteraction.recomendation}} {{unit}} sin riesgo de que caduquen</p>
+    <hr *ngIf="liveInteraction.recomendation">
+    <p  *ngIf="liveInteraction.wast<0">Te haran falta  {{liveInteraction.wast}} {{unit}}</p>
+  </div>
+  </div>
+  <input class="send-btn"  (click)="saveProduct()" type="submit" [disabled]="form.invalid" value="SAVE PRODUCT">
 </form>
 
 </div>

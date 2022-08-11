@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import tools from 'src/app/Utils/tools';
 import { Consumption } from '../../Utils/types/consumption';
 
-const {IMAGE,unexpired}=tools.components, {img_products}=unexpired;
+const {IMAGE,unexpired,ToPlural}=tools.components, {img_products}=unexpired;
 
 @Component({
   selector: 'app-average-consumption',
@@ -13,13 +13,12 @@ export class AverageConsumptionComponent implements OnInit {
 
 
 @Input() averages!:{[key:string]:Consumption};
-
+ToPlural=ToPlural;
 img_path=IMAGE+img_products
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    console.log(this.averages);
   }
 
 

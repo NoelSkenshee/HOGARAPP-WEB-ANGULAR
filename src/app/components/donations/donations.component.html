@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="totalDonate">
   <div class="main_product" *ngFor="let donate of donations">
   <header><h2>{{donate.name}}</h2>
   <img   [src]="img_path+donate.image" alt="alt"/>
@@ -10,3 +10,5 @@
   </div>
 </div>
 </div>
+<app-nodata *ngIf="(!totalDonate)" [message]="message"></app-nodata>
+<app-loader *ngIf="loading"></app-loader>

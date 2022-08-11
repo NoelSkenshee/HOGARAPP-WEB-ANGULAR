@@ -1,0 +1,35 @@
+<div class="container">
+  <form >
+
+    <div class="row_col_2">
+   <mat-form-field>
+    <input matInput placeholder="Producto" name="product"[(ngModel)]="diet.product">
+   </mat-form-field>
+   <mat-form-field>
+    <input matInput placeholder="Cantidad" name="quantity" [(ngModel)]="diet.quantity">
+   </mat-form-field>
+  </div>
+
+  <div class="row_col_2">
+    <mat-form-field>
+     <input matInput placeholder="Iniciar" type="date" name="initDate" [(ngModel)]="diet.initDate">
+    </mat-form-field>
+    <mat-form-field>
+     <input matInput placeholder="Terminar" type="date" name="endDate" [(ngModel)]="diet.endDate">
+    </mat-form-field>
+   </div>
+   <div class="days_title"><h3>Dias</h3> </div>
+   <div class="row_col_2" *ngFor="let day of diet.daysTime">
+    <mat-form-field>
+     <input matInput placeholder="Dia" name="day" [(ngModel)]="day.textDay" (change)="day.day=week.indexOf(day.textDay)"  type="text" [value]="day.textDay" autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+     <input matInput placeholder="Hora" name="time" [(ngModel)]="day.time" type="time" [value]="day.time">
+    </mat-form-field>
+   </div>
+   <div class="add" (click)="newDay()"><span>+</span></div>
+   <input class="send-btn"  (click)="saveDiet()" type="submit" value="SALVAR DIETA">
+
+  </form>
+
+  </div>

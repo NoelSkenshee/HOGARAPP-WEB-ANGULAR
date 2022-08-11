@@ -1,13 +1,25 @@
-<div class="container">
+
+<div class="menu" *ngIf="menu" (click)="togMenu()">
+<ul class="_menu">
+  <li [class]="'tog_btn _menu '+active1" (click)="toggle(1)">Caducados</li>
+  <li [class]="'tog_btn _menu '+active2" (click)="toggle(2)">Resumen</li>
+</ul>
+</div>
+<mat-button-toggle-group class="group_btn">
+  <mat-button-toggle    [class]="'tog_btn '+active1" (click)="toggle(1)">Caducados</mat-button-toggle>
+  <mat-button-toggle    [class]="'tog_btn '+active2" (click)="toggle(2)">Resumen</mat-button-toggle>
+  </mat-button-toggle-group>
+
+<div class="container" *ngIf="active1&&!loading&&totalProduct">
   <div class="main_product" *ngFor="let product of products">
   <header>
     <div class="options_box">
       <h2>{{product.product}}</h2>
       <span mat-button [matMenuTriggerFor]="options"><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" /></svg></span>
        <mat-menu  #options="matMenu">
-         <ul>
-          <li  (click)="donateDialog(product)">Donar  <i class="fa fa-heartbeat" aria-hidden="true"></i></li>
-          <li (click)="throw(product)">Tirar <i class="fa fa-trash" aria-hidden="true"></i></li>
+         <ul class="menu_">
+          <li class="menu_" (click)="donateDialog(product)">Donar  <i class="fa fa-heartbeat" aria-hidden="true"></i></li>
+          <li class="menu_" (click)="throw(product)">Tirar <i class="fa fa-trash" aria-hidden="true"></i></li>
          </ul>
        </mat-menu>
     </div>
@@ -20,4 +32,6 @@
   </div>
 </div>
 </div>
-
+<app-nodata *ngIf="(!totalProduct)&&(active1||active2)" [message]="message"></app-nodata>
+<app-loader *ngIf="loading"></app-loader>
+<app-summary *ngIf="active2&&!loading" [product_list]="products"></app-summary>

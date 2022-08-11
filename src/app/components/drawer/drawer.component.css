@@ -90,9 +90,15 @@ i.action{
   align-items: center;
   align-content: center;
   flex-direction: column;
-  height: 32vh;
+  overflow-y: scroll!important;
+  height: 45vh!important;
 }
-
+.navigation:last-child{
+  margin-bottom: 20px;
+}
+.navigation:first-child{
+  margin-top: 3px;
+}
 .navigation>li{
   width: 100%;
   display: flex;
@@ -102,10 +108,9 @@ i.action{
   align-items: center;
   cursor: pointer;
   transition: ease-in-out 0.3s;
-  padding: 10px;
+  padding: 20px;
   color: #265747;
   box-shadow: 0px 1px 2px green;
-
 }
 
 ul>li:hover{
@@ -116,9 +121,9 @@ ul>li:hover{
 
 
 .active{
-  color: white!important;
-  background-color: green;
- box-shadow: none
+   color: white!important;
+   background-color: green;
+   box-shadow: none
 }
 
 .menu_content{
@@ -129,35 +134,6 @@ ul>li:hover{
 }
 
 
-.footer{
-  margin: 0;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  width: 97.5%;
-  padding: 10px;
-  background:green;
-}
-
-.footer>li{
-  padding: 5px;
-  cursor: pointer;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-}
-.footer>li:hover{
-  color: white!important;
-   background-color: #265747;
-  box-shadow: none;
-  border-radius: 100%;
-}
 .close{
   position: absolute;
   top: 9px;

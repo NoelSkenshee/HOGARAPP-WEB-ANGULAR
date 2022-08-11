@@ -29,11 +29,16 @@ const endpoints = {
     wast: '/queries/wast/',
     consumptiondays: '/queries/consumptiondays/',
     recomendation: '/queries/recomendation/',
+
+    diet: '/diet/',
+
 /********************** END  ONLY SQL **************************** */
 
 };
 
-const API_URL = 'http://localhost:9090';
+const API_URL_LOCAL = 'http://localhost:9090';
+const API_URL = 'https://hogarapp.herokuapp.com';
+
 
 const METHODS_SERVICES = {
   LOGIN_SQL: 'LOGIN_SQL',
@@ -62,17 +67,16 @@ const METHODS_SERVICES = {
   WAST:"WAST",
   CONSUMPTIOND:"CONSUMPTIOND",
   RECOMENDATION:"RECOMENDATION",
+  AVERAGE:"AVERAGE",
+
+
+  INSERT_DIET:"INSERT_DIET",
+  LIST_DIET:"LIST_DIET",
+  PROGRESS_DAY_DIET:"PROGRESS_DAY_DIET",
+
+
   /**********************END  ONLY SQL **************************** */
 };
-
-
-
-
-
-
-
-
-
 
 
 const METHODS = {
@@ -92,6 +96,10 @@ const METHODS = {
   WAST:METHODS_SERVICES.WAST,
   CONSUMPTIOND:METHODS_SERVICES.CONSUMPTIOND,
   RECOMENDATION:METHODS_SERVICES.RECOMENDATION,
+  INSERT_DIET:METHODS_SERVICES.INSERT_DIET,
+  LIST_DIET:METHODS_SERVICES.LIST_DIET,
+  PROGRESS_DAY_DIET:METHODS_SERVICES.PROGRESS_DAY_DIET,
+  AVERAGE:METHODS_SERVICES.AVERAGE,
 };
 
 
@@ -101,6 +109,7 @@ export default {
     methods: {
       ...METHODS_SERVICES,
    },
+
     auth: {
       loginSQL: ((end: string) => `${API_URL}${end}`)(endpoints.loginUserSQL),
       loginMongo: ((end: string) => `${API_URL}${end}`)(
@@ -131,8 +140,13 @@ export default {
         `${API_URL}${endpoints.productEXPSQL}${token}`,
 
     },
+      diet:{
+        dietSql:(token: string) =>
+        `${API_URL}${endpoints.diet}${token}`,
+      }
+    ,
     queries: {
-      query:(end:'durationsdays'|'wast'|'consumptiondays'|'recomendation'|'remaining',token:string,queries:string)=> `${API_URL}/queries/${end}/${token}?${queries}`
+      query:(end:'durationsdays'|'wast'|'consumptiondays'|'recomendation'|'remaining'|'average',token:string,queries:string)=> `${API_URL}/queries/${end}/${token}?${queries}`
     },
     consumption:{
       consumption:(token:string)=>`${API_URL}${endpoints.consumptionSQL}${token}`,
@@ -147,15 +161,44 @@ export default {
   },
 
   components: {
+    ToPlural:(singular:string)=>{
+       let consonantes=["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","z"];
+       let vocales=["a","e","i","o","u"];
+      let  res=singular.slice(singular.length-1,singular.length)
+      if(consonantes.includes(res))return "es"
+      else if(vocales.includes(res))return "s"
+      else return ""
+    },
+
+    nodata:{
+      contextList:{Product:"Producto",expired:"Caducado",donate:"Donacion",dieta:"Dieta",consumo:"Consumo"},
+      message:(context:string)=>`No hemos detectado ningun/a ${context} reciente`
+    },
+    classes:{
+      active:"active",
+      today:"today",
+      notToday:"notToday"
+  },
+    week:["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"],
     services: METHODS,
     card_absolute_error: 'card_absolute_error',
     card_absolute_success: 'card_absolute_success',
     IMAGE: `${API_URL}/images/`,
+    img_products: 'products/',
     Authorization: 'Authorization',
     routes: {
       home: '/',
       dashboard: '/dashboard',
+      login: '/login',
     },
+    errors:{
+      unverified:"Unverified user are detected",
+     not_exist:"Noexistent user",
+     novalid_credential:"Invalid Credentials",
+     wrong:"Sory someing was wrong, try again in some minutes",
+     enough:"Ther's not enough",
+     token:"TokenExpiredError"
+  },
 
 
     login: {
@@ -257,7 +300,8 @@ export default {
           durationsD:0,
           wast:0,
           consumptionsD:0,
-          recomendation:0
+          recomendation:0,
+          average:0
       },
         product: 'product',
         category: 'category',

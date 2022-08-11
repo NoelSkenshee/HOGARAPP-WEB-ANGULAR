@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import tools from 'src/app/Utils/tools';
 import { httpResponse } from '../../Utils/types/responseHttp';
 const {query}=tools.services.queries;
-const {REMAINING,DURATION,WAST,CONSUMPTIOND,RECOMENDATION}=tools.services.methods
+const {REMAINING,DURATION,WAST,CONSUMPTIOND,RECOMENDATION,AVERAGE}=tools.services.methods
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,10 @@ export class QueriesService {
  [RECOMENDATION](token:string,product:string,quantity:number,expiryDate:Date){
 
   return this.net.get<httpResponse>(query("recomendation",token,`product=${product}&expiryDate=${expiryDate}&quantity=${quantity}`)).pipe()
+ }
+ [AVERAGE](token:string,product:string){
+
+  return this.net.get<httpResponse>(query("average",token,`product=${product}`)).pipe()
  }
 
 }

@@ -1,0 +1,5 @@
+<div class="nodata">
+  <p *ngIf="!message">No hemos encontrado ningun/a {{context}} registrado</p>
+   <input *ngIf="!message" class="btn" (click)="emitInstance()" [value]="'Agregar mi primer '+context" type="button"/>
+   <p *ngIf="message">{{message}}</p>
+</div>

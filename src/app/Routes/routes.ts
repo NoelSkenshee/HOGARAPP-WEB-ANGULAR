@@ -9,6 +9,7 @@ import { NewproductComponent } from '../components/newproduct/newproduct.compone
 import { ConsumptionComponent } from '../components/consumption/consumption.component';
 import { ExpiredComponent } from '../components/expired/expired.component';
 import { DonationsComponent } from '../components/donations/donations.component';
+import { DietComponent } from '../components/diet/diet.component';
 
 export  const routes:Routes= [
 {
@@ -37,8 +38,8 @@ export  const routes:Routes= [
 
     },
     {
-      path:"newproduct",
-      component:NewproductComponent
+      path:"diet",
+      component:DietComponent
 
     },
     {

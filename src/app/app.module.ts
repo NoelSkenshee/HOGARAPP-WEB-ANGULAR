@@ -11,6 +11,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 
@@ -38,6 +41,12 @@ import { ExpiredComponent } from './components/expired/expired.component';
 import { DonateDialogComponent } from './components/donate-dialog/donate-dialog.component';
 import { DonationsComponent } from './components/donations/donations.component';
 import { AverageConsumptionComponent } from './components/average-consumption/average-consumption.component';
+import { DietComponent } from './components/diet/diet.component';
+import { DietFormComponent } from './components/diet-form/diet-form.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SummaryComponent } from './components/summary/summary.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { NodataComponent } from './components/nodata/nodata.component';
 
 
 @NgModule({
@@ -56,6 +65,12 @@ import { AverageConsumptionComponent } from './components/average-consumption/av
     DonateDialogComponent,
     DonationsComponent,
     AverageConsumptionComponent,
+    DietComponent,
+    DietFormComponent,
+    FooterComponent,
+    SummaryComponent,
+    LoaderComponent,
+    NodataComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +88,9 @@ import { AverageConsumptionComponent } from './components/average-consumption/av
     MatGridListModule,
     MatDialogModule,
     MatMenuModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

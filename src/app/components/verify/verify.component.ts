@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import tools from '../../Utils/tools';
 import { httpResponse } from '../../Utils/types/responseHttp';
 const { welcome } = tools.components.verify;
-const { services} = tools.components;
+const { services,Authorization} = tools.components;
 const {VERIFY}=services;
 
 @Component({
@@ -20,7 +20,7 @@ export class VerifyComponent implements OnInit {
 
   ngOnInit(): void {
     let auth:any=this.auth;
-    const authorization = this.param.snapshot.params['authorization'];
+    const authorization = this.param.snapshot.params[Authorization];
     auth[VERIFY](authorization).subscribe(
       (res:httpResponse) => {
         this.verified = !res.error;

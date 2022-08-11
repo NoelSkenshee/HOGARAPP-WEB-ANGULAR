@@ -1,13 +1,4 @@
-.container {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  background-color: #445544;
-  min-height: 100vh;
-}
+
 
 .main_product {
   padding: 15px;
@@ -83,7 +74,7 @@ img {
   width: 100%;
 }
 
-ul{
+ul.menu_{
   padding: 5px;
   margin: 0;
   display: flex;
@@ -92,7 +83,7 @@ ul{
   list-style: none;
 }
 
-li{
+li.menu_{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -103,7 +94,7 @@ li{
   cursor: pointer;
 }
 
-li:hover{
+li.menu_:hover{
   color: white !important;
   background-color: green;
   box-shadow: none;

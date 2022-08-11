@@ -83,3 +83,6 @@ a:hover {
   border-radius: 5px;
   color: white;
 }
+svg{
+  color: green;
+}

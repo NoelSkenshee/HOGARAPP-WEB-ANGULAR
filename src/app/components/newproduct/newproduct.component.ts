@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import tools from 'src/app/Utils/tools';
 import { httpResponse } from '../../Utils/types/responseHttp';
 import { QueriesService } from '../../services/queries/queries.service';
-const {message_error,errors,form,fieldsForm}=tools.components.newproduct, {Authorization,routes}=tools.components, {NEW_PRODUCT,REMAINING,DURATION,CONSUMPTIOND,WAST,RECOMENDATION}=tools.components.services;
+const {message_error,errors,form,fieldsForm}=tools.components.newproduct, {Authorization,routes,IMAGE,img_products}=tools.components, {NEW_PRODUCT,REMAINING,DURATION,CONSUMPTIOND,WAST,RECOMENDATION,AVERAGE}=tools.components.services;
 
 @Component({
   selector: 'app-newproduct',
@@ -22,6 +22,8 @@ export class NewproductComponent implements OnInit {
   post_product!:string;
   message_error:any=message_error
   errors:any=errors
+  img_path=IMAGE+img_products
+  unit=""
   interactive_fields=fieldsForm
   liveInteraction=fieldsForm.liveInteraction
 
@@ -31,6 +33,11 @@ export class NewproductComponent implements OnInit {
       if(!this.auth)this.nave.navigate([routes.home])
       this.post_product=tools.services.product.productSQL(this.auth)
 
+  }
+
+  refreshToken(token:string){
+    this.auth=token;
+    localStorage.setItem(Authorization,token)
   }
 
   ngOnInit(): void {
@@ -67,8 +74,31 @@ export class NewproductComponent implements OnInit {
     const product =this.form.get(this.interactive_fields.product)?.value,
      net:any= this.q;
     net[REMAINING](this.auth,product).subscribe((res:httpResponse)=>{
-      if(res.data)this.liveInteraction.remaining=res.data
+      if(res.data){
+        this.liveInteraction.remaining=res.data.remaining?.toFixed(2)
+        this.unit=res.data.unit
+      }
       this.wast_cosumptionD_recomend()
+      this.average()
+    },(err:any)=>{
+      if(err.error.message.name==tools.components.errors.token||err.error.message==tools.components.errors.not_exist)return this.nave.navigate([routes.login])
+     if(err.token)return this.refreshToken(err.token)
+    })
+
+  }
+
+
+  average(){
+    const product =this.form.get(this.interactive_fields.product)?.value,
+     net:any= this.q;
+    net[AVERAGE](this.auth,product).subscribe((res:httpResponse)=>{
+      console.log(res);
+      if(res.data){
+        this.liveInteraction.average=res.data.average?.toFixed(2)
+      }
+    },(err:any)=>{
+      if(err.error.message.name==tools.components.errors.token||err.error.message==tools.components.errors.not_exist)return this.nave.navigate([routes.login])
+     if(err.token)return this.refreshToken(err.token)
     })
 
   }
@@ -77,11 +107,17 @@ export class NewproductComponent implements OnInit {
       const expiryDate =this.form.get(this.interactive_fields.expiryDate)?.value,
       net:any= this.q;
       net[DURATION](this.auth,expiryDate).subscribe((res:httpResponse)=>{
-        if(res.data)this.liveInteraction.durationsD=res.data
+        if(res.data)this.liveInteraction.durationsD=res.data?.toFixed(2)
         this.wast_cosumptionD_recomend()
-
+      },(err:any)=>{
+        if(err.error.message.name==tools.components.errors.token||err.error.message==tools.components.errors.not_exist)return this.nave.navigate([routes.login])
+       if(err.token)return this.refreshToken(err.token)
       })
     }
+
+
+
+
 
     wast_cosumptionD_recomend(){
       const product =this.form.get(this.interactive_fields.product)?.value;
@@ -96,7 +132,11 @@ export class NewproductComponent implements OnInit {
         return
       }
       net[CONSUMPTIOND](this.auth,product,quantity,expiryDate).subscribe((res:httpResponse)=>{
-        if(res.data)this.liveInteraction.consumptionsD=res.data
+        if(res.data)this.liveInteraction.consumptionsD=res.data.consumptionDays?.toFixed(2)
+        if(res.token)this.refreshToken(res.token)
+      },(err:any)=>{
+        if(err.error.message.name==tools.components.errors.token||err.error.message==tools.components.errors.not_exist)return this.nave.navigate([routes.login])
+       if(err.token)return this.refreshToken(err.token)
       })
 
       if(quantity==this.liveInteraction.recomendation){
@@ -106,12 +146,25 @@ export class NewproductComponent implements OnInit {
       }
 
       net[WAST](this.auth,product,quantity,expiryDate).subscribe((res:httpResponse)=>{
-        if(res.data)this.liveInteraction.wast=res.data
+        if(res.data)this.liveInteraction.wast=res.data.wast?.toFixed(2)
+        if(res.token)this.refreshToken(res.token)
+      },(err:any)=>{
+        if(err.error.message.name==tools.components.errors.token||err.error.message==tools.components.errors.not_exist)return this.nave.navigate([routes.login])
+       if(err.token)return this.refreshToken(err.token)
       })
+
       net[RECOMENDATION](this.auth,product,quantity,expiryDate).subscribe((res:httpResponse)=>{
-        if(res.data)this.liveInteraction.recomendation=res.data
+        if(res.data)this.liveInteraction.recomendation=res.data.recomendation?.toFixed(2)
+        if(res.token)this.refreshToken(res.token)
+      },(err:any)=>{
+        if(err.error.message.name==tools.components.errors.token||err.error.message==tools.components.errors.not_exist)return this.nave.navigate([routes.login])
+       if(err.token)return this.refreshToken(err.token)
       })
     }
+
+
+
+
 
    filemanager(file:any){
     const file_=<File>file.target.files[0];
@@ -121,15 +174,16 @@ export class NewproductComponent implements OnInit {
   saveProduct(){
    if(this.form.invalid)return
     const values=<any>this.form.value,net:any=this.net;
+     values.price=values.total/values.quantity;
      net[NEW_PRODUCT](this.auth,form(fieldsForm.list,values)).subscribe((res:httpResponse)=>{
       if(!res.error){
+        alert(JSON.stringify(res))
         this.form.reset()
       }
-    },(err:any)=>{console.log(err);
+      if(res.token)this.refreshToken(res.token)
+    },(err:any)=>{
+      if(err.error.message.name==tools.components.errors.token||err.error.message==tools.components.errors.not_exist)return this.nave.navigate([routes.login])
+     if(err.token)return this.refreshToken(err.token)
     })
-
   }
-
-
-
 }

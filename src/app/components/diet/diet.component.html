@@ -1,0 +1,61 @@
+
+<div class="menu" (click)="togMenu()" *ngIf="menu">
+  <ul class="_menu">
+    <li [class]="'tog_btn _menu '+active1" (click)="toggle(1)">Agregar dieta</li>
+    <li [class]="'tog_btn _menu '+active2" (click)="toggle(2)">Progreso</li>
+  </ul>
+</div>
+
+<mat-button-toggle-group class="group_btn">
+  <mat-button-toggle [class]="'tog_btn '+active1" (click)="toggle(1)">Agregar dieta</mat-button-toggle>
+  <mat-button-toggle [class]="'tog_btn '+active2" (click)="toggle(2)">Progreso</mat-button-toggle>
+</mat-button-toggle-group>
+
+
+<div class="container" *ngIf="!active1&&!loading&&totalDiet" >
+    <div class="diet" *ngFor="let diet of dietList">
+    <header>
+      <div class="options_box">
+        <h2> {{diet.quantity}} {{diet.product}}({{ToPlural(diet.product)}})</h2>
+      </div>
+    <img   [src]="img_path+diet.image" alt="product.alt"/>
+  </header>
+    <div class="info_container">
+       <div class="info_box">
+       <div class="days_time_box">
+        <div class="days_time" *ngFor="let day of diet.daysTime">
+          <input  type="checkbox" name="" id=""  [checked]="(getLastDay(day.marckDay)<=7)" disabled>
+          <span [class]="today(day.day,diet.initDate).class" >{{week[day.day]}}</span>
+          <span>{{day.time}}</span>
+        </div>
+       </div>
+       <div class="progress">
+        <span>{{diet.countDay }} de {{diet.durationDay}} dia(s)</span>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="(diet.countDay/diet.durationDay)*100">
+        </mat-progress-bar>
+      </div>
+        <div class="time_params">
+          <div>
+            <div *ngIf="itsToday(diet.initDate)"> <span>Inicia :</span>  <span >Hoy</span></div>
+            <div *ngIf="oldDate(diet.initDate) && !itsToday(diet.initDate)"> <span>Inicio :</span>  <span >{{diet.initDate|date}}</span></div>
+            <div *ngIf="!oldDate(diet.initDate)"> <span>Iniciara :</span>  <span >{{diet.initDate|date}}</span></div>
+          </div>
+            <div *ngIf="itsToday(diet.endDate)"> <span>Termina :</span>  <span >Hoy. Felicitaciones!!!</span></div>
+            <div *ngIf="oldDate(diet.endDate) && !itsToday(diet.endDate)"> <span>Termino :</span>  <span >{{diet.endDate|date}}</span></div>
+            <div *ngIf="!oldDate(diet.endDate)"> <span>Terminara :</span>  <span >{{diet.endDate|date}}</span></div>
+            <div ><span> Restan : </span> <span> {{diet.durationDay-diet.countDay}} dia(s)</span> </div>
+        </div>
+      </div>
+      <div class="marck_day" *ngIf="verifyDay(diet) && !itsToday(diet.marckDay) && oldDate(diet.initDate)">
+        <p>Un dia mas y estaras a {{(diet.durationDay-diet.countDay)-1}} dias de lograr tu objetivo</p>
+        <input type="checkbox" name="" id="" (change)="icrementday(diet)">
+      </div>
+    </div>
+  </div>
+</div>
+<app-nodata *ngIf="(!totalDiet&&active2)" [context]="context" (newInstance)="toggle(1)"></app-nodata>
+<app-loader *ngIf="loading"></app-loader>
+<app-diet-form *ngIf="active1&&!loading"></app-diet-form>
+

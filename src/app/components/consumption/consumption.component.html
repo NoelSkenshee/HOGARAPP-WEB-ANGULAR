@@ -1,19 +1,28 @@
 
+
+<div class="menu" (click)="togMenu()" *ngIf="menu">
+  <ul class="_menu">
+    <li [class]="'tog_btn _menu '+active1" (click)="toggle(1)">Consumo</li>
+    <li [class]="'tog_btn _menu '+active2" (click)="toggle(2)">Promedio</li>
+  </ul>
+</div>
 <mat-button-toggle-group class="group_btn">
-  <mat-button-toggle [class]="'tog_btn '+active1" (click)="toggle(1)">Consumo </mat-button-toggle>
+  <mat-button-toggle [class]="'tog_btn '+active1" (click)="toggle(1)">Consumo</mat-button-toggle>
   <mat-button-toggle [class]="'tog_btn '+active2" (click)="toggle(2)">Promedio</mat-button-toggle>
-  </mat-button-toggle-group>
-<div class="container" *ngIf="active1">
-  <div class="main_product" *ngFor="let consumption of consumptions">
-  <header><h2>{{consumption.product}}</h2>
-  <img   [src]="img_path+consumption.image" alt="alt"/>
-</header>
+</mat-button-toggle-group>
+<div class="container" *ngIf="active1&&!loading&&totalConsumption">
+<div class="main_product" *ngFor="let consumption of consumptions">
+  <header>
+    <h2>{{consumption.product}}({{ToPlural(consumption.product)}})</h2>
+    <img   [src]="img_path+consumption.image" alt="alt"/>
+  </header>
   <div class="info_box">
     <p class="info"><span>Fecha consumo</span><span>{{consumption.date|date}}</span> </p>
     <p class="info"><span>Cantidad consumida</span><span>{{consumption.quantity}} {{consumption.unit}}</span> </p>
   </div>
 </div>
 </div>
-<app-average-consumption  *ngIf="!active1" [averages]="averages"></app-average-consumption>
-
-
+{{totalConsumption}}
+<app-nodata *ngIf="(!totalConsumption)&&(active1||active2)" [message]="message"></app-nodata>
+<app-loader *ngIf="loading"></app-loader>
+<app-average-consumption  *ngIf="!active1&&!loading" [averages]="averages"></app-average-consumption>

@@ -6,7 +6,9 @@ import { ExpiredService } from '../../services/product/expired/expired.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DonateDialogComponent } from '../donate-dialog/donate-dialog.component';
 import tools from 'src/app/Utils/tools';
-const {IMAGE,Authorization,unexpired,routes}=tools.components, {TO_TRASH,INSERT_DONATE,LIST_EXPIRED}=tools.components.services, {img_products}=unexpired, {INSERT_CONSUMPTION}=tools.components.services;
+import { MenuEventService } from '../../services/events/menu_event/menu-event.service';
+import { TitleService } from '../../services/events/title/title.service';
+const {IMAGE,Authorization,unexpired,routes,errors,classes,nodata}=tools.components, {TO_TRASH,INSERT_DONATE,LIST_EXPIRED}=tools.components.services, {img_products}=unexpired, {INSERT_CONSUMPTION}=tools.components.services;
 
 @Component({
   selector: 'app-expired',
@@ -18,31 +20,52 @@ export class ExpiredComponent implements OnInit {
   auth!:string;
   products!:Product[]
   modal!:MatDialogRef<DonateDialogComponent,any>
+  active1=classes.active
+  active2=""
+  menu=false
+  loading=false;
+  message=nodata.message(nodata.contextList.Product)
+  totalProduct=0
 
-  constructor(private net:ExpiredService,private nav:Router,private dialog:MatDialog) {
+  constructor(private net:ExpiredService,private nav:Router,private dialog:MatDialog,private menuService:MenuEventService,private title:TitleService) {
    this.auth=<any>localStorage.getItem(Authorization);
    if(!this.auth)this.nav.navigate([routes.home])
+   this.menuService.emitte$.subscribe(()=>{
+    this.menu=!this.menu
+  });
+  this.title.title(nodata.contextList.expired)
  }
 
+
+ refreshToken(token:string){
+  this.auth=token;
+  localStorage.setItem(Authorization,token)
+}
  ngOnInit(): void {
   this.list()
  }
 
  list(){
+  this.loading=!this.loading;
   let net:any=this.net;
    net[LIST_EXPIRED](this.auth).subscribe((res:httpResponse)=>{
-      this.products=res.data
+      this.products=res.data;
+      this.loading=!this.loading;
    },(err:any)=>{
-      console.error(err);
-   })
- }
+    if(err.error.message.name==errors.token||err.error.message==errors.not_exist)return this.nav.navigate([routes.login])
+   if(err.token)return this.refreshToken(err.token)
+  })
+}
+
 
  throw(product:Product){
   let net:any=this.net
   net[TO_TRASH](this.auth,product).subscribe((res:httpResponse)=>{
     this.list()
-  },(err:any)=>console.error(err))
-
+  },(err:any)=>{
+    if(err.error.message.name==errors.token||err.error.message==errors.not_exist)return this.nav.navigate([routes.login])
+   if(err.token)return this.refreshToken(err.token)
+  })
  }
 
  donate(destination:string,quantity:number,product:Product,token:string){
@@ -50,7 +73,10 @@ export class ExpiredComponent implements OnInit {
   net[INSERT_DONATE](token,{product,destination,quantity}).subscribe((res:httpResponse)=>{
     this.list()
     this.modal.close();
-  },(err:any)=>console.error(err))
+  },(err:any)=>{
+    if(err.error.message.name==errors.token||err.error.message==errors.not_exist)return this.nav.navigate([routes.login])
+   if(err.token)return this.refreshToken(err.token)
+  })
 }
 
  donateDialog(product:Product){
@@ -62,9 +88,23 @@ export class ExpiredComponent implements OnInit {
   modal.componentInstance.donate=this.donate
   modal.componentInstance.modal=modal
   modal.componentInstance.list=this.list
-
  }
 
+ toggle(btn:any){
+  if (btn==1){
+    this.active2=""
+    this.active1=classes.active
+    this.list()
+  }else {
+    this.active1=""
+    this.active2=classes.active
+    this.list()
+  }
+
+}
 
 
+ togMenu(){
+  this.menu=!this.menu
+    }
 }

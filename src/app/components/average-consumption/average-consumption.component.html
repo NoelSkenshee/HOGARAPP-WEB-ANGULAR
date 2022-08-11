@@ -1,10 +1,10 @@
 <div class="container">
   <div class="main_product" *ngFor="let average of averages|keyvalue">
-  <header><h2>{{average.key}}</h2>
+  <header><h2>{{average.key}}({{ToPlural(average.key)}})</h2>
   <img   [src]="img_path+average.value.image" alt="alt"/>
 </header>
   <div class="info_box">
-    <p class="info"><span>Consumo diario</span><span>{{average.value.foraverage/average.value.repeat}} {{average.value.unit}}</span> </p>
+    <p class="info"><span>Consumo diario</span><span>{{(average.value.foraverage/average.value.repeat).toFixed(2)}} {{average.value.unit}}</span> </p>
   </div>
 </div>
 </div>
