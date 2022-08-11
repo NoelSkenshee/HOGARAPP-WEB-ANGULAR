@@ -22,7 +22,6 @@
   </div>
 </div>
 </div>
-{{totalConsumption}}
 <app-nodata *ngIf="(!totalConsumption)&&(active1||active2)" [message]="message"></app-nodata>
 <app-loader *ngIf="loading"></app-loader>
 <app-average-consumption  *ngIf="!active1&&!loading" [averages]="averages"></app-average-consumption>
