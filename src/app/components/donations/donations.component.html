@@ -1,14 +1,16 @@
 <div class="container" *ngIf="totalDonate">
   <div class="main_product" *ngFor="let donate of donations">
-  <header><h2>{{donate.name}}</h2>
-  <img   [src]="img_path+donate.image" alt="alt"/>
+  <header><h3 class="product">{{donate.name}}({{ToPlural(donate.name)}})</h3>
+  <img  class="product" [src]="img_path+donate.image" alt="alt"/>
 </header>
   <div class="info_box">
     <p class="info"><span>Beneficiario</span><span>{{donate.destination}}</span> </p>
-    <p class="info"><span>Fecha de donacion</span><span>{{donate.date|date}}</span> </p>
-    <p class="info"><span>Cantidad donada</span><span>{{donate.quantity}}{{donate.unit}}</span> </p>
+    <p class="info"><span>Fecha de donación</span><span>{{donate.date|date}}</span> </p>
+    <p class="info"><span>Cantidad donada</span><span>{{donate.quantity}} {{donate.unit}}</span> </p>
   </div>
 </div>
 </div>
-<app-nodata *ngIf="(!totalDonate)" [message]="message"></app-nodata>
+<app-message [component]="context"></app-message>
+<app-share></app-share>
+<app-error *ngIf="(!totalDonate)" [message]="message"></app-error>
 <app-loader *ngIf="loading"></app-loader>

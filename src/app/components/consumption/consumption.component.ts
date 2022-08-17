@@ -24,6 +24,7 @@ export class ConsumptionComponent implements OnInit {
    totalConsumption=0;
    ToPlural=ToPlural;
    message=nodata.message(nodata.contextList.consumo)
+   context=nodata.contextList.consumo
    constructor(private net:ConsumptionService,private nav:Router,private menuService:MenuEventService,private titleEvent:TitleService) {
     this.auth=<any>localStorage.getItem(Authorization);
     this.menuService.emitte$.subscribe(()=>{

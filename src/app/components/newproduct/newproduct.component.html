@@ -9,7 +9,7 @@
       <mat-error *ngIf="message_error.product">{{message_error.product}}</mat-error>
      </mat-form-field>
      <mat-form-field>
-      <mat-label>Categoria</mat-label>
+      <mat-label>Categoría</mat-label>
       <input matInput  formControlName="category" required >
       <mat-error *ngIf="message_error.category">{{message_error.category}}</mat-error>
      </mat-form-field>
@@ -17,7 +17,7 @@
 
      <div class="row_col_2">
       <mat-form-field>
-       <mat-label>Caducacion</mat-label>
+       <mat-label>Caducará</mat-label>
        <input matInput type="date"  formControlName="expiryDate" required  (input)="durationsD()">
        <mat-error *ngIf="message_error.expiryDate">{{message_error.expiryDate}}</mat-error>
       </mat-form-field>
@@ -55,18 +55,18 @@
     <hr *ngIf="liveInteraction.remaining">
     <p *ngIf="liveInteraction.average">Sueles consumir {{liveInteraction.average}} {{unit}} diario</p>
     <hr *ngIf="liveInteraction.average">
-    <p *ngIf="liveInteraction.durationsD">El producto durara solo {{liveInteraction.durationsD}} dias</p>
+    <p *ngIf="liveInteraction.durationsD">El producto durará solo {{liveInteraction.durationsD}} días</p>
     <hr *ngIf="liveInteraction.durationsD">
-    <p *ngIf="liveInteraction.consumptionsD">Podras consumir esta cantidad en {{liveInteraction.consumptionsD}} dias</p>
+    <p *ngIf="liveInteraction.consumptionsD">Podrás consumir esta cantidad en {{liveInteraction.consumptionsD}} días</p>
     <hr *ngIf="liveInteraction.consumptionsD">
-    <p *ngIf="liveInteraction.wast>0">Se despediciaran  {{liveInteraction.wast}} {{unit}} </p>
+    <p *ngIf="liveInteraction.wast>0">Se desperdiciaran  {{liveInteraction.wast}} {{unit}} </p>
     <hr *ngIf="liveInteraction.wast>0">
-    <p *ngIf="liveInteraction.recomendation">Tomando en cuenta lo que tienes almacenado y tu consumo diario te recomeiendo comprar  {{liveInteraction.recomendation}} {{unit}} sin riesgo de que caduquen</p>
-    <hr *ngIf="liveInteraction.recomendation">
+    <p *ngIf="liveInteraction.recomendation>0">Tomando en cuenta lo que tienes almacenado y tu consumo diario te recomiendo comprar  {{liveInteraction.recomendation}} {{unit}} sin riesgo de que caduquen</p>
+    <hr *ngIf="liveInteraction.recomendation>0">
     <p  *ngIf="liveInteraction.wast<0">Te haran falta  {{liveInteraction.wast}} {{unit}}</p>
   </div>
   </div>
-  <input class="send-btn"  (click)="saveProduct()" type="submit" [disabled]="form.invalid" value="SAVE PRODUCT">
+  <input class="send-btn"  (click)="saveProduct()" type="submit" [disabled]="form.invalid" value="Guardar">
 </form>
 
 </div>

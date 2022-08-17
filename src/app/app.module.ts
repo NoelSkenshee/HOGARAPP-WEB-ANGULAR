@@ -46,7 +46,11 @@ import { DietFormComponent } from './components/diet-form/diet-form.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { LoaderComponent } from './components/loader/loader.component';
-import { NodataComponent } from './components/nodata/nodata.component';
+import { NodataComponent } from './components/error/error.component';
+import { MessageComponent } from './components/message/message.component';
+import { ConfigComponent } from './components/config/config.component';
+import { VerifyPasswordComponent } from './components/verify-password/verify-password.component';
+import { ShareComponent } from './components/share/share.component';
 
 
 @NgModule({
@@ -71,6 +75,10 @@ import { NodataComponent } from './components/nodata/nodata.component';
     SummaryComponent,
     LoaderComponent,
     NodataComponent,
+    MessageComponent,
+    ConfigComponent,
+    VerifyPasswordComponent,
+    ShareComponent,
   ],
   imports: [
     BrowserModule,

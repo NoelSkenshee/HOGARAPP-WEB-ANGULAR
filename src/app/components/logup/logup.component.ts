@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import tools from '../../Utils/tools';
 import { httpResponse } from '../../Utils/types/responseHttp';
-const { map_mesage_error, map_errors, welcome } = tools.components.logup,{ card_absolute_error, card_absolute_success ,services} = tools.components,{LOGUP}=services;
+import { Router } from '@angular/router';
+const { map_mesage_error, map_errors, welcome } = tools.components.logup,{ card_absolute_error, card_absolute_success ,services,nodata,routes} = tools.components,{LOGUP}=services;
 
 @Component({
   selector: 'app-logup',
@@ -13,12 +14,13 @@ const { map_mesage_error, map_errors, welcome } = tools.components.logup,{ card_
 export class LogupComponent implements OnInit {
   form!: FormGroup;
   class_result: string = card_absolute_error;
-  message!: string;
   success: string = '';
   map_errors: any = map_errors;
   map_mesage_error: any = map_mesage_error;
-
-  constructor(private builder: FormBuilder, private auth: AuthService) {}
+  context=nodata.contextList.logup
+  loading=false;
+  error=""
+  constructor(private builder: FormBuilder, private auth: AuthService,private nave:Router) {}
 
   ngOnInit(): void {
     this.form = this.builder.group({
@@ -31,7 +33,6 @@ export class LogupComponent implements OnInit {
 
   validation() {
     if (!this.form) return;
-    this.message = '';
     for (const key in this.map_errors) {
       if (!this.map_errors.hasOwnProperty(key)) return;
       const field = this.form.get(key);
@@ -44,19 +45,26 @@ export class LogupComponent implements OnInit {
   }
 
   sendUser() {
+     this.loading=!this.loading;
     let auth:any=this.auth;
     if (this.form.valid) {
        auth[LOGUP](this.form.value).subscribe(
         (res:httpResponse) => {
           this.class_result = card_absolute_success;
           this.success = welcome(this.form.value.name, this.form.value.email);
+          if(res.error)this.error=res.message
           this.form.reset();
+
         },
         (err:any) => {
-          this.message = err.error.message.text;
+          this.loading=!this.loading;
+          this.error=err.message;
           this.class_result = card_absolute_error;
         }
       );
-    }
+    }else this.loading=!this.loading;
+
   }
+
 }
+

@@ -1,0 +1,66 @@
+
+svg{
+  cursor: pointer;
+}
+
+
+.btn_open_message{
+  position: fixed;
+  z-index: 100;
+  color: greenyellow!important;
+  bottom: 40px;
+  right: 40px;
+  transform: scale(1.7);
+}
+.box_message{
+position:fixed;
+width: 20%;
+background-color: white;
+display: flex;
+flex-direction:column;
+align-items: center;
+bottom: 0px;
+padding: 20px;
+right: 40px;
+border: 2px solid #445544;
+z-index: 1000;
+border-top-left-radius:  10px;
+border-top-right-radius:  10px;
+
+}
+.box_message>.title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.box_message>*,form>*{
+  width: 90%;
+  color: #445544;
+}
+
+@media screen and (max-width: 900px) {
+  .box_message{
+    width: 97%!important;
+    right: inherit!important;
+    left: inherit!important;
+    border-radius: inherit!important;
+    overflow-y: scroll
+  }
+  .box_message>*{
+    width: 80%!important
+  }}
+  .send-btn {
+    color: green!important;
+    padding: 10px;
+    border-radius: 10px;
+    border-color: green!important;
+    background: white;
+    margin-top: 20px;
+    cursor: pointer;
+  }

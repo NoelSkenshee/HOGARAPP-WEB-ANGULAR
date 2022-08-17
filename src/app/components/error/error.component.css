@@ -23,3 +23,9 @@ p{
   color: white;
   font-size: 19px;
 }
+
+.error{
+  color: white;
+  text-decoration-line: underline;
+  text-decoration-color: red;
+}

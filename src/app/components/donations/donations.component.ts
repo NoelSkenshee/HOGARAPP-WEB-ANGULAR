@@ -5,7 +5,7 @@ import tools from 'src/app/Utils/tools';
 import { donation } from 'src/app/Utils/types/donate';
 import { httpResponse } from '../../Utils/types/responseHttp';
 import { TitleService } from '../../services/events/title/title.service';
-const {IMAGE,Authorization,unexpired,routes,errors,nodata}=tools.components, {LIST_DONATE}=tools.components.services, {img_products}=unexpired;
+const {IMAGE,Authorization,unexpired,routes,errors,nodata,ToPlural}=tools.components, {LIST_DONATE}=tools.components.services, {img_products}=unexpired;
 
 @Component({
   selector: 'app-donations',
@@ -19,6 +19,8 @@ export class DonationsComponent implements OnInit {
    message=nodata.message(nodata.contextList.donate)
    loading=false;
    totalDonate=0
+   ToPlural=ToPlural
+   context=nodata.contextList.donate
   constructor(private net:ExpiredService,private nav:Router,private title:TitleService) {
     this.auth=<any>localStorage.getItem(Authorization);
     if(!this.auth)this.nav.navigate([routes.home])
@@ -47,5 +49,6 @@ export class DonationsComponent implements OnInit {
        if(err.token)return this.refreshToken(err.token)
       })
     }
+
 
 }

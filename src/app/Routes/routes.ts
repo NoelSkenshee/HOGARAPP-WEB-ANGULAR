@@ -10,6 +10,8 @@ import { ConsumptionComponent } from '../components/consumption/consumption.comp
 import { ExpiredComponent } from '../components/expired/expired.component';
 import { DonationsComponent } from '../components/donations/donations.component';
 import { DietComponent } from '../components/diet/diet.component';
+import { ConfigComponent } from '../components/config/config.component';
+import { VerifyPasswordComponent } from '../components/verify-password/verify-password.component';
 
 export  const routes:Routes= [
 {
@@ -23,6 +25,10 @@ export  const routes:Routes= [
 {
   path:"verify/:authorization",
   component:VerifyComponent
+},
+{
+  path:"verify_password/:authorization",
+  component:VerifyPasswordComponent
 },
 {
   path:"login",
@@ -56,6 +62,11 @@ export  const routes:Routes= [
     {
       path:"donations",
       component:DonationsComponent
+
+    },
+    {
+      path:"config",
+      component:ConfigComponent
 
     }
 ]

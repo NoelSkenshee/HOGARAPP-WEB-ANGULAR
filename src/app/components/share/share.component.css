@@ -1,0 +1,36 @@
+.share {
+  position: fixed;
+  z-index: 100;
+  color: greenyellow !important;
+  bottom: 40px;
+  right: 100px;
+  transform: scale(1.7);
+}
+
+.share_item {
+  color: greenyellow !important;
+  padding: 2px;
+  background-color: white;
+  border-radius: 100%;
+}
+.share_item:hover {
+  color: white !important;
+  padding: 2px;
+  border-radius: 100%;
+  background-color: greenyellow;
+}
+
+.box_share {
+     width: max-content;
+    position: fixed;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    bottom: 60px;
+    padding: 10px;
+    right: 83px;
+   /* border: 2px solid #445544;*/
+    z-index: 1000;
+    border-radius: 10px;
+}

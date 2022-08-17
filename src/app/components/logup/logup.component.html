@@ -1,9 +1,8 @@
-<div class="container">
+<div class="container" *ngIf="!loading&&!error">
 
 
-  <div class="auth_form_box">
+  <div class="auth_form_box" >
     <p  *ngIf="success" [class]="class_result">{{success}} </p>
-
     <form [formGroup]="form" *ngIf="!success">
       <header>
         <div class="icon-regist">
@@ -11,21 +10,19 @@
             <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
          </svg>
         </div>
-        <h3>Be part of us</h3>
+        <h3>Registrate</h3>
       </header>
-      <p  *ngIf="message" [class]="class_result">{{message}} </p>
-
-      <mat-form-field appearance="fill">
+      <mat-form-field >
         <mat-label>Nombre completo</mat-label>
         <input matInput formControlName="name" type="text" required>
         <mat-error *ngIf="map_errors.name">{{map_errors.name}}</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field >
         <mat-label>Correo</mat-label>
         <input matInput formControlName="email" type="email" required>
         <mat-error *ngIf="map_errors.email">{{map_errors.email}}</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field>
         <mat-label>Contraseña</mat-label>
         <input matInput formControlName="password" type="password" required>
         <mat-error *ngIf="map_errors.password">{{map_errors.password}}</mat-error>
@@ -33,11 +30,15 @@
 
       <input class="send-btn" type="submit" (click)="sendUser()" value="SEND">
       <nav>
-        <a routerLink="/">Home</a>
-        <a routerLink="/login">Log in</a>
+        <a routerLink="/">INICIO</a>
+        <a routerLink="/login">NUEVA SESIÓN</a>
       </nav>
     </form>
 
   </div>
 
 </div>
+<app-loader *ngIf="loading"></app-loader>
+<app-error *ngIf="error" [message]="error" [backRoute]="true" (newInstance)="error=''"></app-error>
+<app-message  [component]="context" [show_message]="true"></app-message>
+<app-share></app-share>

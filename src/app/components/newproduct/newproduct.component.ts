@@ -32,6 +32,7 @@ export class NewproductComponent implements OnInit {
       this.auth=<any>localStorage.getItem(Authorization);
       if(!this.auth)this.nave.navigate([routes.home])
       this.post_product=tools.services.product.productSQL(this.auth)
+      this.liveInteraction=fieldsForm.cleanLiveInteraction()
 
   }
 
@@ -92,7 +93,6 @@ export class NewproductComponent implements OnInit {
     const product =this.form.get(this.interactive_fields.product)?.value,
      net:any= this.q;
     net[AVERAGE](this.auth,product).subscribe((res:httpResponse)=>{
-      console.log(res);
       if(res.data){
         this.liveInteraction.average=res.data.average?.toFixed(2)
       }
@@ -146,7 +146,7 @@ export class NewproductComponent implements OnInit {
       }
 
       net[WAST](this.auth,product,quantity,expiryDate).subscribe((res:httpResponse)=>{
-        if(res.data)this.liveInteraction.wast=res.data.wast?.toFixed(2)
+        if(res.data)this.liveInteraction.wast =res.data.wast!=this.form.get("quantity")?.value?res.data.wast.toFixed(2):0
         if(res.token)this.refreshToken(res.token)
       },(err:any)=>{
         if(err.error.message.name==tools.components.errors.token||err.error.message==tools.components.errors.not_exist)return this.nave.navigate([routes.login])
@@ -177,8 +177,8 @@ export class NewproductComponent implements OnInit {
      values.price=values.total/values.quantity;
      net[NEW_PRODUCT](this.auth,form(fieldsForm.list,values)).subscribe((res:httpResponse)=>{
       if(!res.error){
-        alert(JSON.stringify(res))
         this.form.reset()
+        this.liveInteraction=fieldsForm.cleanLiveInteraction()
       }
       if(res.token)this.refreshToken(res.token)
     },(err:any)=>{

@@ -26,6 +26,7 @@ export class UnexpiredComponent implements OnInit {
    loading=false;
    totalProduct=0;
    ToPlural=ToPlural;
+   message=false
    constructor(private net:UnexpiredService,private nave:Router,private consum: ConsumptionService,private menuService:MenuEventService,private title:TitleService) {
     this.auth=<any>localStorage.getItem(Authorization);
     if(!this.auth)this.nave.navigate([routes.home])
@@ -51,9 +52,7 @@ export class UnexpiredComponent implements OnInit {
        this.products=res.data
        if(res.token)this.refreshToken(res.token)
        this.totalProduct=this.products.length
-       setTimeout(() => {
         this.loading=false;
-      }, 3000);
       },(err:any)=>{
         if(err.error.message.name==errors.token||err.error.message==errors.not_exist)return this.nave.navigate([routes.login])
         if(err.token)return this.refreshToken(err.token)

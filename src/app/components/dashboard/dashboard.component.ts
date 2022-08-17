@@ -3,7 +3,7 @@ import tools from 'src/app/Utils/tools';
 import { MenuEventService } from '../../services/events/menu_event/menu-event.service';
 import { TitleService } from '../../services/events/title/title.service';
 import { Router } from '@angular/router';
-const {Authorization,routes}=tools.components
+const {Authorization,routes,Email}=tools.components
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +12,10 @@ const {Authorization,routes}=tools.components
 })
 export class DashboardComponent implements OnInit {
   title=""
+   email=""
   constructor(private menu:MenuEventService,private titleEvent:TitleService,private nav:Router) {
       this.titleEvent.title$.subscribe((res)=>this.title=res)
+      this.email=localStorage.getItem(Email)||""
   }
 
   ngOnInit(): void {

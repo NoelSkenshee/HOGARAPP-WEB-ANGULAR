@@ -1,0 +1,6 @@
+<div class="nodata">
+  <p *ngIf="!message">No hemos encontrado ningun/a {{context}} registrado</p>
+  <p *ngIf="message" class="error">Error: {{message}}</p>
+   <input *ngIf="(!message||!backRoute)&&context" class="btn" (click)="emitInstance()" [value]="'Agregar mi primer '+context" type="button"/>
+   <input *ngIf="backRoute" class="btn" (click)="emitInstance()" value="Regresar" type="button"/>
+</div>

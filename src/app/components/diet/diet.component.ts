@@ -95,9 +95,6 @@ listDiet(){
 
      getLastDay(date:Date){
     const hours=60,day=24,time=(new Date().getTime()-new Date(date).getTime());
-
-    console.log(new Date().getTime(),new Date(date).getTime());
-
     return Math.round(time/(1000*hours*hours*day))
    }
 

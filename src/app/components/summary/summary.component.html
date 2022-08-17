@@ -1,8 +1,11 @@
 <div class="container">
   <div class="box_summary" *ngFor="let p of product_map|keyvalue">
     <div class="info_summary" >
-      <span class="title">{{p.key}}</span>
+      <span class="title">{{p.key}}({{ToPlural(p.key)}})</span>
       <p class="data_product"><span>{{(p.value.stored).toFixed(2)}} {{p.value.info.unit}}</span><span>Promedio gasto : {{(p.value.totalSum/p.value.repeat)|currency}}</span><span>Precio promedio: {{(p.value.price/p.value.repeat)|currency}}</span></p>
   </div>
   </div>
 </div>
+<app-share></app-share>
+<app-message></app-message>
+

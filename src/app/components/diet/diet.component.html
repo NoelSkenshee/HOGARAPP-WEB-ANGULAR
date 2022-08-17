@@ -16,46 +16,47 @@
     <div class="diet" *ngFor="let diet of dietList">
     <header>
       <div class="options_box">
-        <h2> {{diet.quantity}} {{diet.product}}({{ToPlural(diet.product)}})</h2>
+        <h3 class="product"> {{diet.quantity}} {{diet.product}}({{ToPlural(diet.product)}})</h3>
       </div>
-    <img   [src]="img_path+diet.image" alt="product.alt"/>
+    <img class="product"   [src]="img_path+diet.image" alt="product.alt"/>
   </header>
     <div class="info_container">
        <div class="info_box">
        <div class="days_time_box">
         <div class="days_time" *ngFor="let day of diet.daysTime">
-          <input  type="checkbox" name="" id=""  [checked]="(getLastDay(day.marckDay)<=7)" disabled>
-          <span [class]="today(day.day,diet.initDate).class" >{{week[day.day]}}</span>
+          <input  type="checkbox" name="" id=""  [checked]="(getLastDay(day.marckDay)<=6)" [title]="(getLastDay(day.marckDay)<=6)?day.marckDay:''" disabled>
+          <span [class]="today(day.day,diet.initDate).class" >{{week[day.day].ui}}</span>
           <span>{{day.time}}</span>
         </div>
        </div>
        <div class="progress">
-        <span>{{diet.countDay }} de {{diet.durationDay}} dia(s)</span>
+        <span>{{diet.countDay }} de {{diet.durationDay}} días(s)</span>
         <mat-progress-bar
           mode="determinate"
           [value]="(diet.countDay/diet.durationDay)*100">
         </mat-progress-bar>
       </div>
         <div class="time_params">
-          <div>
-            <div *ngIf="itsToday(diet.initDate)"> <span>Inicia :</span>  <span >Hoy</span></div>
-            <div *ngIf="oldDate(diet.initDate) && !itsToday(diet.initDate)"> <span>Inicio :</span>  <span >{{diet.initDate|date}}</span></div>
-            <div *ngIf="!oldDate(diet.initDate)"> <span>Iniciara :</span>  <span >{{diet.initDate|date}}</span></div>
-          </div>
-            <div *ngIf="itsToday(diet.endDate)"> <span>Termina :</span>  <span >Hoy. Felicitaciones!!!</span></div>
-            <div *ngIf="oldDate(diet.endDate) && !itsToday(diet.endDate)"> <span>Termino :</span>  <span >{{diet.endDate|date}}</span></div>
-            <div *ngIf="!oldDate(diet.endDate)"> <span>Terminara :</span>  <span >{{diet.endDate|date}}</span></div>
-            <div ><span> Restan : </span> <span> {{diet.durationDay-diet.countDay}} dia(s)</span> </div>
+            <div *ngIf="itsToday(diet.initDate)&&!itsToday(diet.marckDay)"> <span class="tim_p_title">Inicia </span>  <span >Hoy</span></div>
+            <div *ngIf="itsToday(diet.marckDay)&&itsToday(diet.initDate)"> <span class="tim_p_title">Inició </span>  <span >Hoy</span></div>
+            <div *ngIf="oldDate(diet.initDate) && !itsToday(diet.initDate)"> <span  class="tim_p_title">Inició </span>  <span >{{diet.initDate|date}}</span></div>
+            <div *ngIf="!oldDate(diet.initDate)"> <span  class="tim_p_title">Iniciará </span>  <span >{{diet.initDate|date}}</span></div>
+            <div *ngIf="itsToday(diet.endDate)"> <span  class="tim_p_title">Termina </span>  <span >Hoy. Felicitaciones!!!</span></div>
+            <div *ngIf="oldDate(diet.endDate) && !itsToday(diet.endDate)"> <span  class="tim_p_title">Termino </span>  <span >{{diet.endDate|date}}</span></div>
+            <div *ngIf="!oldDate(diet.endDate)"> <span  class="tim_p_title">Terminará </span>  <span >{{diet.endDate|date}}</span></div>
+            <div ><span  class="tim_p_title"> Restan  </span> <span> {{diet.durationDay-diet.countDay}} días(s)</span> </div>
         </div>
       </div>
       <div class="marck_day" *ngIf="verifyDay(diet) && !itsToday(diet.marckDay) && oldDate(diet.initDate)">
-        <p>Un dia mas y estaras a {{(diet.durationDay-diet.countDay)-1}} dias de lograr tu objetivo</p>
+        <p>Un días más y estarás a {{(diet.durationDay-diet.countDay)-1}} días de lograr tu objetivo</p>
         <input type="checkbox" name="" id="" (change)="icrementday(diet)">
       </div>
     </div>
   </div>
 </div>
-<app-nodata *ngIf="(!totalDiet&&active2)" [context]="context" (newInstance)="toggle(1)"></app-nodata>
+<app-message [component]="context"></app-message>
+<app-share></app-share>
+<app-error *ngIf="(!totalDiet&&active2)" [context]="context" (newInstance)="toggle(1)"></app-error>
 <app-loader *ngIf="loading"></app-loader>
 <app-diet-form *ngIf="active1&&!loading"></app-diet-form>
 

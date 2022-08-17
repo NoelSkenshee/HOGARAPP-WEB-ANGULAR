@@ -29,13 +29,12 @@ nav {
   justify-content: center;
   padding: 17px;
 }
-
-button {
-  background-color: greenyellow !important;
-  color: white;
+button{
+  background-color: white;
+  color: #11544c;
   min-width: 100px;
   padding: 10px;
-  border-color: #fff;
+  border-color: white;
   border-radius: 20px;
   cursor: pointer;
 }

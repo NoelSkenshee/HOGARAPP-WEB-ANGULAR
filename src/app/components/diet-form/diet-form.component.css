@@ -72,14 +72,16 @@ form{
 }
 
 .send-btn {
-  color: white;
-  padding: 15px;
+  color: green!important;
+  padding: 10px;
   border-radius: 10px;
-  border-color: white;
-  background: green;
+  border-color: green!important;
+  background: white;
   margin-top: 20px;
   cursor: pointer;
   align-self: center;
+  min-width: 25%;
+  margin-bottom: 5px;
 }
 
 

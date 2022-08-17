@@ -8,7 +8,7 @@ import { DonateDialogComponent } from '../donate-dialog/donate-dialog.component'
 import tools from 'src/app/Utils/tools';
 import { MenuEventService } from '../../services/events/menu_event/menu-event.service';
 import { TitleService } from '../../services/events/title/title.service';
-const {IMAGE,Authorization,unexpired,routes,errors,classes,nodata}=tools.components, {TO_TRASH,INSERT_DONATE,LIST_EXPIRED}=tools.components.services, {img_products}=unexpired, {INSERT_CONSUMPTION}=tools.components.services;
+const {IMAGE,Authorization,unexpired,routes,errors,classes,nodata,ToPlural}=tools.components, {TO_TRASH,INSERT_DONATE,LIST_EXPIRED}=tools.components.services, {img_products}=unexpired, {INSERT_CONSUMPTION}=tools.components.services;
 
 @Component({
   selector: 'app-expired',
@@ -26,7 +26,8 @@ export class ExpiredComponent implements OnInit {
   loading=false;
   message=nodata.message(nodata.contextList.Product)
   totalProduct=0
-
+  ToPlural=ToPlural
+  context=nodata.contextList.expired
   constructor(private net:ExpiredService,private nav:Router,private dialog:MatDialog,private menuService:MenuEventService,private title:TitleService) {
    this.auth=<any>localStorage.getItem(Authorization);
    if(!this.auth)this.nav.navigate([routes.home])
@@ -51,6 +52,7 @@ export class ExpiredComponent implements OnInit {
    net[LIST_EXPIRED](this.auth).subscribe((res:httpResponse)=>{
       this.products=res.data;
       this.loading=!this.loading;
+      this.totalProduct=this.products.length
    },(err:any)=>{
     if(err.error.message.name==errors.token||err.error.message==errors.not_exist)return this.nav.navigate([routes.login])
    if(err.token)return this.refreshToken(err.token)

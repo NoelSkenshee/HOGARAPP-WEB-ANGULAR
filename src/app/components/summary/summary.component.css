@@ -20,7 +20,7 @@
   justify-content: center;
   width: 90%;
   align-self: center;
-  color: green;
+  color: #445544;
   animation: ny-to-ny  2s ease-in-out;
 }
 .image_summary{
@@ -69,5 +69,11 @@ hr{
     background: green;
     color: white;
     padding: 5px;
-    font-size: 29px;
-}}
+    font-size: 20px;
+}
+.data_product{
+  flex-wrap: wrap!important;
+
+}
+
+}

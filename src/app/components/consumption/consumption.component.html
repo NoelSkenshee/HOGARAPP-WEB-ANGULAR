@@ -13,8 +13,8 @@
 <div class="container" *ngIf="active1&&!loading&&totalConsumption">
 <div class="main_product" *ngFor="let consumption of consumptions">
   <header>
-    <h2>{{consumption.product}}({{ToPlural(consumption.product)}})</h2>
-    <img   [src]="img_path+consumption.image" alt="alt"/>
+    <h3 class="product">{{consumption.product}}({{ToPlural(consumption.product)}})</h3>
+    <img  class="product" [src]="img_path+consumption.image" alt="alt"/>
   </header>
   <div class="info_box">
     <p class="info"><span>Fecha consumo</span><span>{{consumption.date|date}}</span> </p>
@@ -22,6 +22,8 @@
   </div>
 </div>
 </div>
-<app-nodata *ngIf="(!totalConsumption)&&(active1||active2)" [message]="message"></app-nodata>
+<app-message [component]="context"></app-message>
+<app-share></app-share>
+<app-error *ngIf="(!totalConsumption)&&(active1||active2)" [message]="message"></app-error>
 <app-loader *ngIf="loading"></app-loader>
 <app-average-consumption  *ngIf="!active1&&!loading" [averages]="averages"></app-average-consumption>

@@ -3,7 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Product } from '../../Utils/types/product';
 import { ExpiredService } from '../../services/product/expired/expired.service';
 import { DialogRef } from '@angular/cdk/dialog';
-
+import tools from 'src/app/Utils/tools';
+const {ToPlural}=tools.components;
 @Component({
   selector: 'app-donate-dialog',
   templateUrl: './donate-dialog.component.html',
@@ -19,6 +20,7 @@ export class DonateDialogComponent implements OnInit {
   list!:any
   auth!:string
   modal!:MatDialogRef<DonateDialogComponent,any>
+  ToPlural=ToPlural
   constructor() { }
   ngOnInit(): void {
   }

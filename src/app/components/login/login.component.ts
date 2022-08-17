@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import tools from '../../Utils/tools';
 import { httpResponse } from '../../Utils/types/responseHttp';
-const { message_error_field, mat_error_field } = tools.components.login, { card_absolute_error, card_absolute_success ,services,Authorization,routes} = tools.components,{LOGIN}=services;
+const { message_error_field, mat_error_field } = tools.components.login, { card_absolute_error, card_absolute_success ,services,Authorization,routes,nodata,Email} = tools.components,{LOGIN}=services;
 
 @Component({
   selector: 'app-login',
@@ -14,11 +14,12 @@ const { message_error_field, mat_error_field } = tools.components.login, { card_
 export class LoginComponent implements OnInit {
   form!: FormGroup;
   class_result: string = card_absolute_error;
-  message!: string;
   success: string = '';
   mat_error_field: any = mat_error_field;
   message_error_field: any = message_error_field;
-
+  context=nodata.contextList.login
+  loading=false;
+  error=""
   constructor(
     private builder: FormBuilder,
     private auth: AuthService,
@@ -35,7 +36,6 @@ export class LoginComponent implements OnInit {
 
   onFormChange() {
     if (!this.form) return;
-    this.message = '';
     for (const key in this.mat_error_field) {
       if (!this.mat_error_field.hasOwnProperty(key)) return;
       const field = this.form.get(key);
@@ -49,21 +49,24 @@ export class LoginComponent implements OnInit {
 
   login() {
     let auth:any=this.auth;
+    this.loading=!this.loading;
     if (this.form.valid) {
       auth[LOGIN](this.form.value).subscribe(
         (res:httpResponse) => {
            this.class_result = card_absolute_success;
-           this.form.reset();
            localStorage.setItem(Authorization,res.data)
+           localStorage.setItem(Email,this.form.get("email")?.value)
+           this.form.reset();
            this.nav.navigate([routes.dashboard])
+           if(res.error)this.error=res.message
         },
         (err:any) => {
-          console.log(err);
-
-           this.message = err.error.message.text || err.error.message;
+          this.loading=!this.loading;
+           this.error=err.message||err.error?err.error.message:'';
            this.class_result = card_absolute_error;
         }
       );
-    }
+    }else this.loading=!this.loading;
+
   }
 }

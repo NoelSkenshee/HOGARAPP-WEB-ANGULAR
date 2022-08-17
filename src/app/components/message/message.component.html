@@ -1,0 +1,28 @@
+<svg *ngIf="!show_message" (click)="toggle()" class="btn_open_message" style="width:24px;height:24px" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20,2A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H6L2,22V4C2,2.89 2.9,2 4,2H20M4,4V17.17L5.17,16H20V4H4M6,7H18V9H6V7M6,11H15V13H6V11Z" />
+</svg>
+<div class="box_message" *ngIf="show_message">
+  <div class="title">
+    <h4>Mensaje</h4>
+    <svg (click)="toggle()" style="width:24px;height:24px" viewBox="0 0 24 24">
+      <path fill="currentColor"
+        d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+    </svg>
+  </div>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <label>Correo</label>
+      <input formControlName="email" name="email" matInput type="email">
+      <mat-error *ngIf="errors.email">{{errors.email}}</mat-error>
+    </mat-form-field>
+    <label for="clifica">Calificar del 1 al 100.  {{form.get('ratting')?.value}} </label>
+    <input formControlName="ratting" id="clifica" name="ratting" type="range">
+    <mat-error *ngIf="errors.ratting">{{errors.ratting}}</mat-error>
+    <mat-form-field>
+      <label>Mensaje</label>
+      <textarea formControlName="message" name="message" matInput name="" id="" cols="30" rows="5"></textarea>
+      <mat-error *ngIf="errors.message">{{errors.message}}</mat-error>
+    </mat-form-field>
+    <input class="send-btn" [disabled]="form.invalid"  (click)="sendMessage()" type="submit" value="Enviar">
+  </form>
+</div>

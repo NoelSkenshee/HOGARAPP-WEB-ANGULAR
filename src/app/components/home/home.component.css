@@ -22,25 +22,16 @@ nav{
  justify-content: space-between;
 }
 button{
- background-color: greenyellow!important;
- color: white;
- min-width: 100px;
- padding: 10px;
- border-color: #fff;
- border-radius: 20px;
- cursor: pointer;
+  background-color: white;
+  color: #11544c;
+  min-width: 100px;
+  padding: 10px;
+  border-color: white;
+  border-radius: 20px;
+  cursor: pointer;
 }
 .divider{
- background-color: green;
-color: green;
+ background-color: #11544c;
+ color: #11544c;
 
-}
-
-.send-btn{
- color: white;
- padding: 10px;
- border-radius: 10px;
- border-color: white;
- background: green;
- margin-top: 20px;
 }

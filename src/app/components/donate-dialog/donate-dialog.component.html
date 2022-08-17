@@ -3,9 +3,9 @@
     <header>
       <div class="options_box">
 
-        <h2>Donar {{product.product}} <i class="fa fa-heartbeat" aria-hidden="true"></i></h2>
+        <h3 class="product">Donar {{product.product}}({{ToPlural(product.product)}}) <i class="fa fa-heartbeat" aria-hidden="true"></i></h3>
       </div>
-      <img [src]="img_path+product.image" [alt]="product.alt" />
+      <img class="product" [src]="img_path+product.image" [alt]="product.alt" />
     </header>
     <div class="info_box">
       <div class="info_donate">
@@ -20,3 +20,4 @@
     </div>
   </div>
 </div>
+
